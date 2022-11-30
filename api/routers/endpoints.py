@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status, UploadFile, File
+from fastapi import APIRouter, UploadFile, File
 from repository import functionality
 
 # Define router with sets
@@ -9,21 +9,28 @@ router = APIRouter(
 
 
 @router.post('/upload')
-def upload_file(file: UploadFile = File(...)):
-   return functionality.uploadFile(file)
+def upload_file(file: UploadFile = File(...)) -> UploadFile:
+    """Endpoint in charge of receiving a file and processing
+    the file upload to the system
 
-@router.get('/customers')
-def customersData():
-    return None
+    Args:
+        file (UploadFile, optional): files to be uploaded via url of
+        type csv, json or xlxs. Defaults to File(...).
 
-@router.get('/transactions')
-def transactionsData():
-    return None
+    Returns:
+        UploadFile: json file with information if the file
+        was loaded or not in the system.
+    """
+    return functionality.uploadFile(file)
 
-@router.get('/targetCustomers')
-def targetCustomersData():
-    return None
 
-@router.get('/products')
-def productsData():
-    return None
+@router.get('/get_data')
+def getData() -> dict:
+    """Endpoint that returns the paths of the
+    processed csv files
+
+    Returns:
+        dict: dictionary with each of the paths found in the
+        outputs folder with csvs
+    """
+    return functionality.get_csv_url_files()
