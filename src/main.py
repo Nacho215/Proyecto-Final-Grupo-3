@@ -1,12 +1,16 @@
+import sys
+sys.path.append("..")
+
 import pandas as pd
 import os 
 from sqlalchemy import create_engine
+from libs.config import settings
 
-# replace lib.conf.setting.DATASET_PATH
-DATASET_PATH = '../datasets/KPMG_VI_New_raw_data_update_final.xlsx'
-FOLDER_SAVE_CSV_PATH = '../outputs'
-engine = create_engine('postgresql://grupo3:grupo3prisma@grupo-3.cc6ln003oetr.sa-east-1.rds.amazonaws.com:5432/postgres')
 
+DATASET_PATH = settings.DATASET_PATH
+FOLDER_SAVE_CSV_PATH = settings.FOLDER_SAVE_CSV_PATH
+
+engine = create_engine(settings.DATABASE_URL)
 
 def extract(dataset: str) -> pd.DataFrame:
     """function to extract the data from the dataset
@@ -154,10 +158,10 @@ def load(df_transactions: pd.DataFrame,
     df_customers.to_csv(f'{FOLDER_SAVE_CSV_PATH}/customers.csv', index=False)
 
     
-    df_transactions.to_sql('transactions', engine, if_exists='append')
-    df_product.to_sql('products', engine, if_exists='append')
-    df_target_customers.to_sql('target_customers', engine, if_exists='append' )
-    df_customers.to_sql('customers', engine, if_exists='append')
+    df_transactions.to_sql('transactions', engine, if_exists='append', index=False)
+    df_product.to_sql('products', engine, if_exists='append', index=False) 
+    df_target_customers.to_sql('target_customers', engine, if_exists='append', index=False)
+    df_customers.to_sql('customers', engine, if_exists='append', index=False)
 
 
 def run():
