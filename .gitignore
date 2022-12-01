@@ -6,6 +6,10 @@ datasets/
 # Log files
 *.log
 
+#Other files
+libs/__pycache__/__init__.cpython-310.pyc
+libs/__pycache__/config.cpython-310.pyc
+
 # Config files
 /.gitignore
 /.env
