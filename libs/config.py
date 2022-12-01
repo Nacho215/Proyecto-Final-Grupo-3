@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 #Lo primero que debemos hacer es ubicar donde esta nuestro .env
-env_path = Path('.') / '.env' # Esto lo que hace es volver una carpeta atras donde esta el archivo .env
+env_path = Path('..') / '.env' # Esto lo que hace es volver una carpeta atras donde esta el archivo .env
 load_dotenv(dotenv_path=env_path) # Cargamos el archivo de .env a traves del env_path
 
 class Settings:
@@ -15,5 +15,8 @@ class Settings:
     POSTGRES_SERVER:str = os.getenv('POSTGRES_SERVER')
     POSTGRES_PORT:str = os.getenv('POSTGRES_PORT')
     DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
+
+    DATASET_PATH:str = os.getenv('DATASET_PATH')
+    FOLDER_SAVE_CSV_PATH = os.getenv('FOLDER_SAVE_CSV_PATH')
 
 settings = Settings()
