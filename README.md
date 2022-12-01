@@ -1,3 +1,3 @@
-# 🚲 Proyecto Datos Bikes Ecommerce
+# 🚲 Ecommerce Bikes data project
 ----
 
