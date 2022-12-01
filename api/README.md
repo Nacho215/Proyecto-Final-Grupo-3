@@ -16,6 +16,18 @@
 
 >For the execution and implementation of this module you must first run the virtual environment of the module and then install the project dependencies which are found in the requirements.txt file.
 
+Create Virual env with venv name
+<code>virtualenv venv</code>
+
+Activate path to activate venv
+<code>venv/Scripts/activate</code>
+
+Install requieremts
+<code>pip install -r requirements.txt</code>
+
+Desactivate virtualenv
+<code>deactivate</code>
+
 >After the previous step we must run the following script
 
 <code>python apiMain.py</code>
@@ -35,5 +47,7 @@ dats = requests.get('http://127.0.0.1:8000/dataset/get_data')
     # Convert json object into python dict
     dats = dats.json()
     for i in dats:
+        # Obtain eachone of paths into dictionary that 
+        # will be used to read into read_csv function
         print(pd.read_csv(dats[i]))
 ~~~

@@ -2,7 +2,10 @@
 venv/
 __pycache__/
 outputs/
+datasets/
+# Log files
+*.log
 
 # Config files
-.gitignore
-.env
+/.gitignore
+/.env

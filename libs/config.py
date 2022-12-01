@@ -3,8 +3,11 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 # The first thing we have to do is to locate where our .env
-env_path = Path('.') / '.env' # What this does is to go back one folder where the .env file is located.
-load_dotenv(dotenv_path=env_path) # We load the .env file through env_path
+# What this does is to go back one folder where the .env file is located.
+env_path = Path('.') / '.env'
+# We load the .env file through env_path
+load_dotenv(dotenv_path=env_path)
+
 
 class Settings:
     PROJECT_NAME:str = "PROYECTO-FAST-API"
@@ -15,4 +18,6 @@ class Settings:
     POSTGRES_SERVER:str = os.getenv('POSTGRES_SERVER')
     POSTGRES_PORT:str = os.getenv('POSTGRES_PORT')
     DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
+
+
 settings = Settings()
