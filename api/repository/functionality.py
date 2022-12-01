@@ -7,13 +7,11 @@ import logging.config
 # Get root project root
 rootPath = Path(__file__).parent.parent.parent
 
-print(f'{rootPath}/logs.conf')
-
 # Logs config imports and logger set
-logging.config.fileConfig(fname=f'{rootPath}/logs.conf',
+logging.config.fileConfig(f"{rootPath}/config_logs.conf",
                           disable_existing_loggers=False)
 
-logger = logging.getLogger('loggerMain')
+logger = logging.getLogger('simpleLogger')
 
 
 def uploadFile(file: UploadFile) -> JSONResponse:
@@ -33,7 +31,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
             content = file.file.read()
             myFile.write(content)
             myFile.close()
-            logger.info('File created successfuly')
+            logger.info('File successfuly created')
         return JSONResponse(content={
             'saved': True,
             'path': f'{rootPath}/{file.filename}'
