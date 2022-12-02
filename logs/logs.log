@@ -21,3 +21,4 @@
 2022-12-02 18:23:56,837 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
 2022-12-02 18:24:43,040 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
 2022-12-02 18:25:28,093 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
+2022-12-02 18:25:53,939 - simpleLogger - INFO - File successfuly created
