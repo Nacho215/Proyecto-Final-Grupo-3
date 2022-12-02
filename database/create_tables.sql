@@ -1,6 +1,7 @@
 -- This script is for create tables of project 'customer_transaction'
 
 -- #Create Database
+-- The database was previously created in order to be able to work on it.
 -- create database customer_transaction;
 
 -- #Create Tables
@@ -8,8 +9,8 @@
 -- Products
 drop table if exists products;
 create table products(
-	product_id INT primary key, 
-    brand VARCHAR(100),
+	product_id serial primary key, 
+    brand VARCHAR(100) default 'unmarked',
     product_line VARCHAR(100),
     product_class VARCHAR(100),
     product_size VARCHAR(100)
@@ -17,12 +18,12 @@ create table products(
 -- Current Customer
 drop table if exists current_customers;
 create table current_customers(
-    customer_id INT primary key,
-    name VARCHAR(150),
+    customer_id serial primary key,
+    name VARCHAR(150) default 'NN',
     gender VARCHAR(150),
     past_3_years_bike_related_purchases INT,
-    birth_date DATE,
-    age numeric,
+    birth_date DATE check(birth_date > '1840-01-01'),
+    age numeric check(age > 10),
     job_title VARCHAR(150),
     job_industry_category VARCHAR(150),
     wealth_segment VARCHAR(150),
@@ -38,15 +39,15 @@ create table current_customers(
 -- Transaction
 drop table if exists transactions;
 create table transactions(
-	transaction_id INT,
-    customer_id INT,
-    transaction_date DATE,
+	transaction_id serial,
+    customer_id INT not null,
+    transaction_date DATE check(transaction_date > '1900-01-01'),
     online_order bool,
     order_status VARCHAR(100),
-    list_price numeric,
-    standard_cost numeric,
+    list_price numeric check(list_price > 0),
+    standard_cost numeric check(standard_cost > 0),
     product_first_sold_date numeric,
-    product_id INT,
+    product_id INT not null,
     primary key (transaction_id),
     constraint fk_customer
     	foreign key (customer_id)
@@ -60,11 +61,12 @@ create table transactions(
 -- Targeted Customer
 drop table if exists target_customers;
 create table target_customers(
-   	first_name VARCHAR(150),
-    last_name VARCHAR(150),
+	target_id serial primary key,
+   	first_name VARCHAR(150) default 'NN',
+    last_name VARCHAR(150) default 'NN',
     gender VARCHAR(150),
     past_3_years_bike_related_purchases INT,
-    birth_date DATE,
+    birth_date DATE check(birth_date > '1900-01-01'),
     job_title VARCHAR(150),
     job_industry_category VARCHAR(150),
     wealth_segment VARCHAR(150),
