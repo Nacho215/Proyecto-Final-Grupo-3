@@ -34,16 +34,19 @@ Desactivate virtualenv
 
 As an extra we leave the endpoints and an example script to obtain the paths of the csv to read them.
 
+- Api swagger Cocumentation for endpoint testing
+1. <code>localhost:8000/docs</code>
+
 - Internal paths of processed csv's
-1. <code>../dataset/get_data</code>
+1. <code>localhost:8000/dataset/get_data</code>
 
 - File upload to the system
-2. <code>../dataset/update</code>
+2. <code>localhost:8000/dataset/update</code>
 
 ##### Example of code to obtain the url and with these your dataframes
 
 ~~~
-dats = requests.get('http://127.0.0.1:8000/dataset/get_data')
+dats = requests.get('localhost:8000/dataset/get_data')
     # Convert json object into python dict
     dats = dats.json()
     for i in dats:
