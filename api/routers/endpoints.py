@@ -10,8 +10,7 @@ router = APIRouter(
 
 @router.post('/upload')
 def upload_file(file: UploadFile = File(...)) -> UploadFile:
-    """Endpoint in charge of receiving a file and processing
-    the file upload to the system
+    """Endpoint that recive a file and upload to de local file system
 
     Args:
         file (UploadFile, optional): files to be uploaded via url of
@@ -19,7 +18,7 @@ def upload_file(file: UploadFile = File(...)) -> UploadFile:
 
     Returns:
         UploadFile: json file with information if the file
-        was loaded or not in the system.
+        was loaded or not in the system and path where was upload.
     """
     return functionality.uploadFile(file)
 
