@@ -14,3 +14,10 @@
 2022-12-01 12:53:18,093 - simpleLogger - INFO - File successfuly created
 2022-12-01 12:53:21,857 - simpleLogger - INFO - File successfuly created
 2022-12-01 12:53:23,948 - simpleLogger - INFO - File successfuly created
+2022-12-02 18:16:14,756 - simpleLogger - ERROR - Error File not found: <class 'FileNotFoundError'>
+2022-12-02 18:19:25,094 - simpleLogger - ERROR - Error File not found: <class 'FileNotFoundError'>
+2022-12-02 18:19:43,591 - simpleLogger - INFO - File successfuly created
+2022-12-02 18:23:06,924 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
+2022-12-02 18:23:56,837 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
+2022-12-02 18:24:43,040 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
+2022-12-02 18:25:28,093 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
