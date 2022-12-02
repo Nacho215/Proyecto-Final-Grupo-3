@@ -36,7 +36,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 logger.info('File successfuly created')
             return JSONResponse(content={
                 'saved': True,
-                'path': f'{rootPath}/{file.filename}'
+                'path': f'{rootPath}/datasets/{file.filename}'
             }, status_code=200)
         else:
             os.mkdir(f'{rootPath}/datasets')
@@ -47,7 +47,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 logger.info('File successfuly created')
             return JSONResponse(content={
                 'saved': True,
-                'path': f'{rootPath}/{file.filename}'
+                'path': f'{rootPath}/datasets/{file.filename}'
             }, status_code=200)
 
     except FileNotFoundError:        
