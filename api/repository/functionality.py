@@ -57,10 +57,11 @@ def get_csv_url_files() -> dict:
     dfUrlDict = {}
     # Loop which gets each of the paths from the address
     # stored in the output_dir variable
-    for index, fichero in enumerate(output_dir.iterdir()):
+    for fichero in output_dir.iterdir():
 
         try:
-            dfUrlDict[index] = f'{rootPath}/outputs/{fichero.name}'
+            # Create dictionary with file name as key
+            dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'
         except Exception as e:
             logger.error(f'Error File not found: {e}')
             return JSONResponse(content={
