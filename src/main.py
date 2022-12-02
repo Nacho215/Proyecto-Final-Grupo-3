@@ -7,14 +7,14 @@ from sqlalchemy import create_engine
 import os
 import warnings
 from libs.config import settings
-
+from libs.db import engine
+from libs.db import CommonActions
 # Set future warnings off
 warnings.simplefilter(action='ignore', category=FutureWarning)
 # Constants definition
 DATASET_PATH = settings.DATASET_PATH
 FOLDER_SAVE_CSV_PATH = settings.FOLDER_SAVE_CSV_PATH
 # Database engine
-engine = create_engine(settings.DATABASE_URL)
 
 
 def extract(dataset: str) -> tuple:
@@ -168,6 +168,8 @@ def load(df_transactions: pd.DataFrame,
         df_customers (pd.DataFrame): processed customers DataFrame.
         csv_path (str): path where store the csv files.
     """
+    #truncate tables
+    CommonActions.truncate_tables()
     # Creates directory if not exists
     if not os.path.exists(csv_path):
         os.mkdir(csv_path)
