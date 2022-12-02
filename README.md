@@ -21,7 +21,7 @@ The Dataset can be downloaded here:
 - ***libs***: Python libraries (modules) used in the project.
 - ***logs***: Logs files that record different events during the program execution.
 - ***notebooks***: Jupyter notebook with an EDA explaining the nature of the dataset.
-- ***sql_script***: contains a SQL script (for tables generation), an ERD (entity-relation diagram) and the documentation associated to the database.
+- ***database***: contains a SQL script (for tables generation), an ERD (entity-relation diagram) and the documentation associated to the database.
 - ***src***: contains source files (Python scripts).
 ## Files
 - ***.gitignore***: list with intentionally untracked files.
