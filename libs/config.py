@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 # Locate and load.env file
 load_dotenv()
 
-
 class Settings:
     """
     Class that contains all project settings.
@@ -33,7 +32,5 @@ class Settings:
     S3_DATASET_NAME: str = os.getenv('S3_DATASET_NAME')
     S3_DATASET_PATH = f'{S3_DATASET_FOLDER}/{S3_DATASET_NAME}'
     
-
-
 # Reference to class
 settings = Settings()
