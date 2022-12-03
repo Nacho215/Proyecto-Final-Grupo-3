@@ -41,7 +41,6 @@ def download_dataset_from_s3(s3_key:str, s3_secret:str, s3_bucket:str ,s3_datase
                         )
     object_file = client.get_object(Bucket=s3_bucket, Key=s3_dataset_path)
     dataset = object_file['Body'].read()
-    print(type(dataset))
     return dataset
 
 
