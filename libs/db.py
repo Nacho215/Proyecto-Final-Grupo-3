@@ -6,14 +6,16 @@ that make references to the references to the different tables in the model.
 '''
 # import logging
 # import logging.config
+import sys
+sys.path.append('')
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import DATABASE_URL
+from libs.config import settings
 
 # Sqlalchemy
 # engine is created to be called as modules from other scripts
-engine = create_engine(DATABASE_URL)
+engine = create_engine(settings.DATABASE_URL)
 # session is created to be called as modules from other scripts
 Session = sessionmaker(bind=engine)
 session = Session()

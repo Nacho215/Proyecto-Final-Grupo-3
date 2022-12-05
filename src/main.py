@@ -3,18 +3,45 @@ import sys
 sys.path.append('')
 
 import pandas as pd
-from sqlalchemy import create_engine
-import os
 import warnings
 from libs.config import settings
 from libs.db import engine
 from libs.db import CommonActions
+import boto3
+
 # Set future warnings off
 warnings.simplefilter(action='ignore', category=FutureWarning)
+
+
 # Constants definition
-DATASET_PATH = settings.DATASET_PATH
-FOLDER_SAVE_CSV_PATH = settings.FOLDER_SAVE_CSV_PATH
-# Database engine
+S3_KEY = settings.S3_KEY
+S3_SECRET = settings.S3_SECRET
+S3_CREDENTIALS = settings.S3_CREDENTIALS
+S3_BUCKET = settings.S3_BUCKET
+S3_FOLDER_SAVE_CSV_PATH = settings.S3_FOLDER_SAVE_CSV_PATH
+S3_DATASET_PATH = settings.S3_DATASET_PATH
+
+
+def download_dataset_from_s3(s3_key:str, s3_secret:str, s3_bucket:str ,s3_dataset_path: str) -> bytes:
+    """Download dataset from aws s3 bucket
+
+    Args:
+        s3_key (str): aws key id 
+        s3_secret (str): aws secret
+        s3_bucket (str): s3 bucket name
+        s3_dataset_path (str): s3 dataset location
+
+    Returns:
+        bytes : xlsx containing the dataset
+    """    
+    
+    client = boto3.client('s3', 
+                        aws_access_key_id=s3_key, 
+                        aws_secret_access_key=s3_secret
+                        )
+    object_file = client.get_object(Bucket=s3_bucket, Key=s3_dataset_path)
+    dataset = object_file['Body'].read()
+    return dataset
 
 
 def extract(dataset: str) -> tuple:
@@ -156,7 +183,8 @@ def load(df_transactions: pd.DataFrame,
          df_products: pd.DataFrame,
          df_target_customers: pd.DataFrame,
          df_customers: pd.DataFrame,
-         csv_path: str):
+         s3_csv_save_path: str,
+         s3_credentials: dict):
     """
     Function that loads data to the database and also saves it to csv files.
 
@@ -166,18 +194,18 @@ def load(df_transactions: pd.DataFrame,
         df_target_customers (pd.DataFrame):
             processed target customers DataFrame.
         df_customers (pd.DataFrame): processed customers DataFrame.
-        csv_path (str): path where store the csv files.
+        s3_csv_save_path (str): path where store the csv files.
+        s3_credentials (dict): aws s3 access credentials
     """
     #truncate tables
-    CommonActions.truncate_tables()
-    # Creates directory if not exists
-    if not os.path.exists(csv_path):
-        os.mkdir(csv_path)
-    # Saves .csv files
-    df_transactions.to_csv(f'{csv_path}/transactions.csv', index=False)
-    df_products.to_csv(f'{csv_path}/products.csv', index=False)
-    df_target_customers.to_csv(f'{csv_path}/target_customers.csv', index=False)
-    df_customers.to_csv(f'{csv_path}/customers.csv', index=False)
+    commonactions = CommonActions()
+    commonactions.truncate_tables()
+
+    # Saves .csv files in aws s3 bucket
+    df_transactions.to_csv(f'{s3_csv_save_path}/transactions.csv', index=False, storage_options=s3_credentials)
+    df_products.to_csv(f'{s3_csv_save_path}/products.csv', index=False, storage_options=s3_credentials)
+    df_target_customers.to_csv(f'{s3_csv_save_path}/target_customers.csv', index=False, storage_options=s3_credentials)
+    df_customers.to_csv(f'{s3_csv_save_path}/customers.csv', index=False, storage_options=s3_credentials)
 
     # Truncate tables before load
     engine.execute(
@@ -216,9 +244,12 @@ def run():
     """
     # Try to run the ETL process, catching posible exceptions
     try:
+        # Download dataset from aws s3 bucket
+        dataset = download_dataset_from_s3(S3_KEY,S3_SECRET,S3_BUCKET,S3_DATASET_PATH)
+        
         # Extract
         df_transactions, df_target_customers, \
-            df_demographic, df_address = extract(DATASET_PATH)
+            df_demographic, df_address = extract(dataset)
         # Transform
         df_end_transactions, df_end_products = transform_transactions(df_transactions)
         df_end_target_customers = transform_target_customers(df_target_customers)
@@ -229,10 +260,11 @@ def run():
             df_end_products,
             df_end_target_customers,
             df_end_customers,
-            FOLDER_SAVE_CSV_PATH
+            S3_FOLDER_SAVE_CSV_PATH,
+            S3_CREDENTIALS
         )
     except Exception as e:
-        print(e)
+        print(f'error : {e}')
 
 
 if __name__ == '__main__':
