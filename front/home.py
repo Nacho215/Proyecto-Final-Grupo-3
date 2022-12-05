@@ -19,16 +19,22 @@ with body:
     # Welcome message and descriptions
     st.markdown(
         """
-        # Welcome to bike 🚲 forever ♾, where all your biking needs will be satisfied. 🙌
+        # Welcome to bike 🚲 forever ♾, where all your biking needs will
+        # be satisfied. 🙌
         
-        -------------------------![imagen](https://i.pinimg.com/550x/2b/1c/5f/2b1c5f11939d2faca9c0b2536f7e7c9e.jpg)--------------------------
+        <div align="center" width="50">
+
+            <img src="https://i.pinimg.com/550x/2b/1c/5f/2b1c5f11939d2faca9c0b2536f7e7c9e.jpg" alt="ForeverBicycles" width="300"/>
+
+        </div>
         
         In this webpage you will be able to:
-        # Welcome to bike 🚲 forever ♾, where all your biking needs will be satisfied. 🙌
+        # Welcome to bike 🚲 forever ♾, where all your biking needs will
+        # be satisfied. 🙌
         In this webpage you will be able to:
         * 👉 upload our dataset
         * 👉 filter the dataset according to your needs
-        * 👉 graph out the most relevant data available.                
+        * 👉 graph out the most relevant data available.
         More information at [Bikes Forever](bikesforever.com.ar)
        
         """
