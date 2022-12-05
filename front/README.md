@@ -14,23 +14,31 @@
 
 >🐍 functions.py: Here we have the filtering functions and other necessary functions for the module.
 
-## 👣 Setup
+## 👣 Installation
 ----
 
 >For the execution and implementation of this module you must first run the virtual environment of the module and then install the project dependencies which are found in the requirements.txt file.
 
-Create Virual env with venv name
+##### Create Virual env with venv name
 
-<code>virtualenv venv</code>
+```bash
+virtualenv venv
+```
 
-Activate path to activate venv
+##### Activate path to activate venv
 
-<code>venv/Scripts/activate</code>
+```bash
+venv/Scripts/activate
+```
 
-Install requieremts
+##### Install requieremts
 
-<code>pip install -r requirements.txt</code>
+```bash
+pip install -r requirements.txt
+```
 
 >After the previous step we must position ourselves inside the module's folder and then run the following script
 
-<code>streamlit run home.py</code>
+```bash
+streamlit run home.py
+```

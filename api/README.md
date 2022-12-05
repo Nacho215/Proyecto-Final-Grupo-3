@@ -13,42 +13,65 @@
 
 >🐍 Finally we find apiMain.py file where you can run fastAPI server and all your components
 
-## 👣 Setup
+## 👣 Installation
 ----
 
 >For the execution and implementation of this module you must first run the virtual environment of the module and then install the project dependencies which are found in the requirements.txt file.
 
-Create Virual env with venv name
+##### Create Virual env with venv name
 
-<code>virtualenv venv</code>
+```bash
+virtualenv venv
+```
 
-Activate path to activate venv
+##### Activate path to activate venv
 
-<code>venv/Scripts/activate</code>
+```bash
+venv/Scripts/activate
+```
 
-Install requieremts
+##### Install requieremts
 
-<code>pip install -r requirements.txt</code>
+```bash
+pip install -r requirements.txt
+```
 
 >After the previous step we must position ourselves inside the module's folder and then run the following script
 
-<code>python apiMain.py</code>
+```bash
+python apiMain.py
+```
 
 As an extra we leave the endpoints and an example script to obtain the paths of the csv to read them.
 
-- Api swagger Documentation for endpoint testing
-  
-1. <code>localhost:8000/docs</code>
+## API Reference
 
-- Internal paths of processed csv's
-  
-2. <code>localhost:8000/dataset/get_data</code>
+#### Swagger docs
 
-- File upload to the system
-  
-3. <code>localhost:8000/dataset/update</code>
+```http
+  /docs
+```
 
-##### 📦 Example of code to obtain the url and with these your dataframes
+#### Get all csv processed items
+
+```http
+  GET /dataset/get_data
+```
+
+#### Uploar xlxs file
+
+```http
+  POST /dataset/update
+```
+
+|   Parameter  |   Type   | Description                    |
+| :--------    | :------- | :----------------------------- |
+| `file_objet` |  `file`  | **Required**. Upload xsxl file |
+
+
+##### 📦 Usage/Examples
+-----
+>Obtain the url and with these your dataframes
 
 ~~~
 dats = requests.get('localhost:8000/dataset/get_data')
