@@ -52,3 +52,50 @@ class CommonActions:
         else:
             print('Truncated Tables')
             # logger.info('Truncated Tables')
+
+    def execute_query(table: str, columns=None, filters=None) -> list | None:
+        """
+        Builds a simple query with given parameters,
+        executes it and return the results.
+
+        Args:
+            table (str): table name
+            columns (list): a list with column names. Defaults to None.
+            filters (str, optional): filters to apply
+                (WHERE clause without the WHERE keyword). Defaults to None.
+
+        Returns:
+            list | None: a list of returned rows.
+                None if failed to execute query.
+        """
+        # Builds the query with given parameters
+        # SELECT
+        query = "SELECT "
+        if columns:
+            for idx, col in enumerate(columns):
+                query += col
+                if idx < len(columns) - 1:
+                    query += ', '
+        else:
+            query += "* "
+        # FROM
+        query += f" FROM {table}"
+        # WHERE
+        if filters:
+            query += f" WHERE {filters}"
+        query += ";"
+
+        # Try to execute it, catching possible exceptions
+        try:
+            result = session.execute(query)
+            session.commit()
+            session.close()
+        except Exception as e:
+            # logger.error('f'Failed to execute query: {query}. Exception: {e}')
+            print(f'Failed to execute query: {query}.\n{e}')
+            return None
+        else:
+            # If executed successfully, return fetched rows
+            # logger.info(f'Query executed successfully: {query}')
+            print(f'Query executed successfully: {query}')
+            return result.fetchall()
