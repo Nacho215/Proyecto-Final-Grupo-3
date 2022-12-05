@@ -1,3 +1,9 @@
+<div align="center" width="50">
+
+<img src="https://i.pinimg.com/550x/2b/1c/5f/2b1c5f11939d2faca9c0b2536f7e7c9e.jpg" alt="ForeverBicycles" width="300"/>
+
+</div>
+
 # 🚲 Ecommerce Bikes data project
 ----
 # 🎯 Objectives
