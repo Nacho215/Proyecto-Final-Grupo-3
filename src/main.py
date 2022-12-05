@@ -207,11 +207,6 @@ def load(df_transactions: pd.DataFrame,
     df_target_customers.to_csv(f'{s3_csv_save_path}/target_customers.csv', index=False, storage_options=s3_credentials)
     df_customers.to_csv(f'{s3_csv_save_path}/customers.csv', index=False, storage_options=s3_credentials)
 
-    # Truncate tables before load
-    engine.execute(
-        'TRUNCATE TABLE current_customers, products, transactions, target_customers;'
-    )
-
     # Load processed dataframes into database tables
     df_products.to_sql(
         'products',
