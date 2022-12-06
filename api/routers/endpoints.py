@@ -1,5 +1,16 @@
+import logging
+import logging.config
+from pathlib import Path
 from fastapi import APIRouter, UploadFile, File
 from repository import functionality
+
+# second level
+root = Path.cwd().parent
+root = f'{root}/config_logs.conf'
+print(f'Endopoint{root}')
+# open file config
+logging.config.fileConfig(root)
+logger = logging.getLogger('api')
 
 # Define router with sets
 router = APIRouter(
@@ -20,6 +31,8 @@ def upload_file(file: UploadFile = File(...)) -> UploadFile:
         UploadFile: json file with information if the file
         was loaded or not in the system and path where was upload.
     """
+    logger.info('Return file')
+    logger.critical('Desde Critical')
     return functionality.uploadFile(file)
 
 
@@ -32,4 +45,6 @@ def getData() -> dict:
         dict: dictionary with each of the paths found in the
         outputs folder with csvs
     """
+    logger.info('Return path of file')
+    logger.critical('Desde Critical')
     return functionality.get_csv_url_files()

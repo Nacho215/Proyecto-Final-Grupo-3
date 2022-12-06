@@ -8,11 +8,18 @@ import logging.config
 # Get root project root
 rootPath = Path(__file__).parent.parent.parent
 
-# Logs config imports and logger set
-logging.config.fileConfig(f"{rootPath}/config_logs.conf",
-                          disable_existing_loggers=False)
+# # Logs config imports and logger set
+# logging.config.fileConfig(f"{rootPath}/config_logs.conf",
+#                           disable_existing_loggers=False)
 
-logger = logging.getLogger('simpleLogger')
+# logger = logging.getLogger('simpleLogger')
+# Path level level
+root = Path.cwd().parent
+root = f'{root}/config_logs.conf'
+print(root)
+# open file config
+logging.config.fileConfig(root)
+logger = logging.getLogger('api')
 
 
 def uploadFile(file: UploadFile) -> JSONResponse:
@@ -50,7 +57,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 'path': f'{rootPath}/datasets/{file.filename}'
             }, status_code=200)
 
-    except FileNotFoundError:        
+    except FileNotFoundError:
         logger.error(f'Error File not found, directory had been created: {FileNotFoundError}')
         return JSONResponse(content={
             'saved': False
