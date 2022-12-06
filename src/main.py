@@ -1,14 +1,15 @@
 # Imports
 import sys
-sys.path.append('')
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__),'../'))
 
 import pandas as pd
 import warnings
 import boto3
-import os
 from libs.config import settings
 from libs.db import engine
 from libs.db import CommonActions
+from sqlalchemy.engine import Engine 
 
 
 # Set future warnings off
@@ -25,12 +26,13 @@ S3_DATASET_PATH = settings.S3_DATASET_PATH
 DATASET_PATH = os.path.join(settings.DATASET_DIR, settings.S3_DATASET_NAME)
 DATASET_DIR = settings.DATASET_DIR
 
+
 def download_dataset_from_s3(
     s3_key: str, s3_secret: str,
     s3_bucket: str, s3_dataset_path: str,
     output_dataset_path: str,
-    dataset_dir:str
-    ) -> bool:
+    dataset_dir: str
+        ) -> bool:
     """
     Download dataset from aws s3 bucket.
 
@@ -52,7 +54,7 @@ def download_dataset_from_s3(
             aws_access_key_id=s3_key,
             aws_secret_access_key=s3_secret
         )
-        
+
         # create directory to save the dataset if it does not exist
         if not os.path.exists(dataset_dir):
             os.mkdir(dataset_dir)
@@ -76,7 +78,7 @@ def extract(dataset: str) -> tuple:
     Returns:
         tuple: tuple containing the generated dataframes
     """
-    try : 
+    try:
         df_transactions = pd.read_excel(dataset, "Transactions", skiprows=[0])
         df_target_customers = pd.read_excel(
             dataset, "NewCustomerList", skiprows=[0])
@@ -84,7 +86,7 @@ def extract(dataset: str) -> tuple:
         df_address = pd.read_excel(dataset, "CustomerAddress", skiprows=[0])
     except FileNotFoundError:
         print('error al abrir el dataset')
-    except Exception as e :
+    except Exception as e:
         print(f'se produjo un error al extraer los dataframes del dataset {e}')
 
     return df_transactions, df_target_customers, df_demographic, df_address
@@ -100,9 +102,9 @@ def transform_transactions(df_transactions: pd.DataFrame) -> tuple:
     Returns:
         tuple: tuple containing transactions and products DataFrames.
     """
-    
-    try : 
-    # Drop product_id column because it's not reliable
+
+    try:
+        # Drop product_id column because it's not reliable
         df_transactions.drop("product_id", axis=1, inplace=True)
         # Fix column types
         df_transactions["online_order"] = \
@@ -155,13 +157,14 @@ def transform_transactions(df_transactions: pd.DataFrame) -> tuple:
         df_transactions.drop(index=index_drop, inplace=True)
     except KeyError:
         print('existe un error en el dataset')
-    except Exception as e :
+    except Exception as e:
         print(f'se produjo un error al procesar el dataset {e}')
 
     return df_transactions, df_products
 
 
-def transform_target_customers(df_target_customers: pd.DataFrame) -> pd.DataFrame:
+def transform_target_customers(
+        df_target_customers: pd.DataFrame) -> pd.DataFrame:
     """
     Function that transforms target customers data.
 
@@ -184,7 +187,7 @@ def transform_target_customers(df_target_customers: pd.DataFrame) -> pd.DataFram
             df_target_customers["owns_car"].astype('bool')
     except KeyError:
         print('existe un error en el dataset')
-    except Exception as error :
+    except Exception as error:
         print(f'se produjo un error al procesar el dataset {error}')
 
     return df_target_customers
@@ -215,7 +218,7 @@ def transform_customers(df_address: pd.DataFrame,
         df_customers["owns_car"] = df_customers["owns_car"].astype('bool')
     except KeyError:
         print('existe un error en el dataset')
-    except Exception as e :
+    except Exception as e:
         print(f'se produjo un error al procesar el dataset {e}')
 
     return df_customers
@@ -226,7 +229,8 @@ def load(df_transactions: pd.DataFrame,
          df_target_customers: pd.DataFrame,
          df_customers: pd.DataFrame,
          s3_csv_save_path: str,
-         s3_credentials: dict):
+         s3_credentials: dict,
+         engine: Engine) -> Exception:
     """
     Function that loads data to the database and also saves it to csv files.
 
@@ -239,7 +243,12 @@ def load(df_transactions: pd.DataFrame,
         s3_csv_save_path (str): path where store the csv files.
         s3_credentials (dict): aws s3 access credentials
     """
-    try: 
+
+    try:
+        if df_transactions.empty or df_products.empty or \
+             df_target_customers.empty or df_customers.empty:
+            raise ValueError
+
         # Saves .csv files in aws s3 bucket
         df_transactions.to_csv(
             f'{s3_csv_save_path}/transactions.csv',
@@ -290,8 +299,10 @@ def load(df_transactions: pd.DataFrame,
             if_exists='append',
             index=False
         )
-    except Exception as e:
-        print(f'se produjo el siguiente error al cargar los datos: {e}')
+    except ValueError:
+        print("empty dataframe")
+        return ValueError
+
 
 def run():
     """
@@ -325,7 +336,8 @@ def run():
             df_end_target_customers,
             df_end_customers,
             S3_FOLDER_SAVE_CSV_PATH,
-            S3_CREDENTIALS
+            S3_CREDENTIALS,
+            engine
         )
     except Exception as e:
         print(f'ETL process failed. Error: {e}')
