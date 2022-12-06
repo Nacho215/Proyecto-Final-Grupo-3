@@ -1,6 +1,7 @@
-from fastapi import UploadFile
+from fastapi import UploadFile, HTTPException, status
 from fastapi.responses import JSONResponse
 from pathlib import Path
+from shutil import rmtree
 import os
 import logging
 import logging.config
@@ -32,6 +33,21 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 # and then read the binary
                 content = file.file.read()
                 myFile.write(content)
+
+                # Select all content into file, then Verify if 
+                # don't have content into file
+                # and back cursor to the start
+                myFile.seek(0, os.SEEK_END)
+                isempty = myFile.tell() == 0
+                myFile.seek(0)
+
+                if isempty:
+                    myFile.close()
+                    rmtree(Path(__file__).parent.parent.parent / "datasets")
+                    raise HTTPException(
+                                status_code=status.HTTP_404_NOT_FOUND,
+                                detail="File not found"
+                            )
                 myFile.close()
                 logger.info('File successfuly created')
             return JSONResponse(content={
@@ -43,6 +59,23 @@ def uploadFile(file: UploadFile) -> JSONResponse:
             with open(f"{rootPath}/datasets/{file.filename}", 'wb') as myFile:
                 content = file.file.read()
                 myFile.write(content)
+
+                # Select all content into file, then Verify if 
+                # don't have content into file
+                # and back cursor to the start
+                myFile.seek(0, os.SEEK_END)
+                isempty = myFile.tell() == 0
+                myFile.seek(0)
+
+                if isempty:
+                    # Close file to can remove datasets folder if file is empty
+                    myFile.close()
+                    rmtree(Path(__file__).parent.parent.parent / "datasets")
+                    raise HTTPException(
+                                status_code=status.HTTP_404_NOT_FOUND,
+                                detail="File not found"
+                            )
+                            
                 myFile.close()
                 logger.info('File successfuly created')
             return JSONResponse(content={
@@ -51,10 +84,11 @@ def uploadFile(file: UploadFile) -> JSONResponse:
             }, status_code=200)
 
     except FileNotFoundError:        
-        logger.error(f'Error File not found, directory had been created: {FileNotFoundError}')
-        return JSONResponse(content={
-            'saved': False
-        }, status_code=404)
+        logger.error(f'Error File not found {FileNotFoundError}')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="File not found"
+        )
 
 
 def get_csv_url_files() -> dict:
@@ -71,14 +105,14 @@ def get_csv_url_files() -> dict:
     # Loop which gets each of the paths from the address
     # stored in the output_dir variable
     for fichero in output_dir.iterdir():
+        # Create dictionary with file name as key
+        dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'            
 
-        try:
-            # Create dictionary with file name as key
-            dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'
-        except Exception as e:
-            logger.error(f'Error File not found: {e}')
-            return JSONResponse(content={
-                                'response': "File not found"
-                                }, status_code=404)
+    if len(dfUrlDict) == 0:
+        logger.error('Error - Files not found')
+        raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="File not found"
+                )
 
     return dfUrlDict
