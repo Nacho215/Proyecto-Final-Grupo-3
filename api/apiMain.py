@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 import uvicorn
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__),''))
 from routers import endpoints
 
 # Creat app and add routes (enpoints)
