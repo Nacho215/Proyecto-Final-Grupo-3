@@ -7,10 +7,10 @@ from repository import functionality
 # second level
 root = Path.cwd().parent
 root = f'{root}/config_logs.conf'
-# print(f'Endopoint{root}')
+
 # open file config
 logging.config.fileConfig(root)
-logger = logging.getLogger('api')
+logger = logging.getLogger('API')
 
 # Define router with sets
 router = APIRouter(

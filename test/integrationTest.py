@@ -4,9 +4,11 @@ import sys
 import os
 import pandas as pd
 import pytest
+import logging
+import logging.config
 from shutil import rmtree
 from pathlib import Path
-sys.path.append(os.path.join(os.path.dirname(__file__),'../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from libs.db import Base
 from libs.config import settings
 from src.main import extract
@@ -15,6 +17,16 @@ from src.main import transform_target_customers
 from src.main import transform_customers
 from src.main import load
 from src.main import download_dataset_from_s3
+
+# Loggings
+# Path level
+root = Path.cwd().parent
+root = f'{root}/config_logs.conf'
+
+# open file config
+logging.config.fileConfig(root)
+logger = logging.getLogger('TEST')
+logger.info('Beginning integration tests!')
 
 # Parameters to will be use into tests
 S3_KEY = settings.S3_KEY
@@ -71,7 +83,7 @@ def dataframes_generate() -> tuple(pd.DataFrame):
 
 @pytest.mark.filterwarnings("ignore::FutureWarning")
 def test_dataframe_load_database(dataframes_generate):
-    """Test function that verify if tables was created into database with all 
+    """Test function that verify if tables was created into database with all
     records
 
     Args:
@@ -95,21 +107,28 @@ def test_dataframe_load_database(dataframes_generate):
     # verifies if data has been uploaded to the database
     assert conn.execute(
         "SELECT COUNT(product_id) as number_reg FROM products")\
-        .fetchall()[0][0] > 0
+        .fetchall()[0][0] > 0, logger.warning(
+            'Test Count rows is greater 0 -> Failed')
 
     assert conn.execute(
         "SELECT COUNT(customer_id) as number_reg FROM current_customers")\
-        .fetchall()[0][0] > 0
+        .fetchall()[0][0] > 0, logger.warning(
+            'Test Count rows is greater 0 -> Failed')
 
     assert conn.execute(
         "SELECT COUNT(first_name) as number_reg FROM target_customers")\
-        .fetchall()[0][0] > 0
+        .fetchall()[0][0] > 0, logger.warning(
+            'Test Count rows is greater 0 -> Failed')
 
     assert conn.execute(
         "SELECT COUNT(transaction_id) as number_reg FROM transactions")\
-        .fetchall()[0][0] > 0
+        .fetchall()[0][0] > 0, logger.warning(
+            'Test Count rows is greater 0 -> Failed')
 
     conn.close()
+
+    logger.info(
+        'Test check count of rows is greater 0 -> Successfully Completed!')
 
     os.remove(os.path.join(os.path.dirname(__file__), 'test.db'))
 
@@ -118,7 +137,7 @@ def test_dataframe_load_database(dataframes_generate):
 
 @pytest.mark.filterwarnings("ignore::FutureWarning")
 def test_empty_dataframes_to_database(dataframes_generate):
-    """Test if load function rise correct exception if 
+    """Test if load function rise correct exception if
     I send an emmpty dataframe
 
     Args:
@@ -126,7 +145,7 @@ def test_empty_dataframes_to_database(dataframes_generate):
     """
     df_end_transactions, df_end_products,\
         df_end_target_customers, df_end_customers = dataframes_generate
-    
+
     df_end_transactions = pd.DataFrame({})
     df_end_products = pd.DataFrame({})
 
@@ -139,5 +158,8 @@ def test_empty_dataframes_to_database(dataframes_generate):
                     S3_CREDENTIALS,
                     engine_test
                 )
-    assert return_value == ValueError
+    assert return_value == ValueError, logger.warning(
+            'Test check if return ValueError -> Failed')
 
+    logger.info(
+        'Test rise correct exception -> Successfully Completed!')

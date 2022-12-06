@@ -180,3 +180,28 @@ LINE 1: SELECT *  FROM product;
 '2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
 '2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
 '2022-12-06T15:30' - api - ERROR - Error - Files not found
+'2022-12-06T20:07' - DB - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T20:08' - DB - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T20:09' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Truncated Tables successful
+'2022-12-06T20:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:12' - API - ERROR - Failed - Files not found
+'2022-12-06T20:12' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:12' - API - ERROR - Failed -> File empty
+'2022-12-06T20:14' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:14' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:14' - API - ERROR - Failed - Files not found
+'2022-12-06T20:14' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:14' - API - INFO - File successfuly created
+'2022-12-06T20:14' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:14' - API - ERROR - Failed -> File empty
+'2022-12-06T20:16' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:16' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:16' - API - ERROR - Failed - Files not found
+'2022-12-06T20:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:16' - API - INFO - File successfuly created
+'2022-12-06T20:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:16' - API - ERROR - Failed -> File empty

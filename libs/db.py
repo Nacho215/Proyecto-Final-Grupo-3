@@ -10,9 +10,10 @@ from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import settings
+import os
 import sys
-sys.path.append('')
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+from libs.config import settings
 
 # Sqlalchemy
 # engine is created to be called as modules from other scripts
@@ -29,7 +30,7 @@ root = Path.cwd().parent
 root = f'{root}/config_logs.conf'
 # open file config
 logging.config.fileConfig(root)
-logger = logging.getLogger('db')
+logger = logging.getLogger('DB')
 
 
 # Class to add functionality
@@ -80,7 +81,7 @@ class CommonActions:
         else:
             query += "* "
         # FROM
-        query += f" FROM {table}"
+        query += f"FROM {table}"
         # WHERE
         if filters:
             query += f" WHERE {filters}"

@@ -15,7 +15,7 @@ root = f'{root}/config_logs.conf'
 
 # open file config
 logging.config.fileConfig(root)
-logger = logging.getLogger('api')
+logger = logging.getLogger('API')
 
 
 def uploadFile(file: UploadFile) -> JSONResponse:
@@ -46,6 +46,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 if isempty:
                     myFile.close()
                     rmtree(Path(__file__).parent.parent.parent / "datasets")
+                    logger.error('Failed -> File empty')
                     raise HTTPException(
                                 status_code=status.HTTP_404_NOT_FOUND,
                                 detail="File not found"
@@ -62,7 +63,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 content = file.file.read()
                 myFile.write(content)
 
-                # Select all content into file, then Verify if 
+                # Select all content into file, then Verify if
                 # don't have content into file
                 # and back cursor to the start
                 myFile.seek(0, os.SEEK_END)
@@ -73,6 +74,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                     # Close file to can remove datasets folder if file is empty
                     myFile.close()
                     rmtree(Path(__file__).parent.parent.parent / "datasets")
+                    logger.error('Failed -> File empty')
                     raise HTTPException(
                                 status_code=status.HTTP_404_NOT_FOUND,
                                 detail="File not found"
@@ -111,7 +113,7 @@ def get_csv_url_files() -> dict:
         dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'
 
     if len(dfUrlDict) == 0:
-        logger.error('Error - Files not found')
+        logger.error('Failed - Files not found')
         raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="File not found"

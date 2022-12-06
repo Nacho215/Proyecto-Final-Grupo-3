@@ -4,13 +4,9 @@ import logging
 import logging.config
 from shutil import rmtree
 from pathlib import Path
-<<<<<<< HEAD
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
-=======
 import pandas as pd
 from pandas import ExcelWriter
-sys.path.append(os.path.join(os.path.dirname(__file__),'../'))
->>>>>>> main
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from fastapi.testclient import TestClient
 from api.apiMain import app
 
@@ -20,8 +16,8 @@ root = f'{root}/config_logs.conf'
 
 # open file config
 logging.config.fileConfig(root)
-logger = logging.getLogger('test')
-logger.info('beginning tests')
+logger = logging.getLogger('TEST')
+logger.info('Beginning unit tests!')
 
 # Call testclient fastapi to make requests
 client = TestClient(app)
@@ -52,9 +48,9 @@ def test_read_files():
     response = client.get('/dataset/get_data')
 
     assert response.status_code == 200, logger.warning(
-        'Test Status_code -> Failure')
+        'Test Status_code -> Failed')
     assert response.content != None, logger.warning(
-        'Test content not empty ->  Failure')
+        'Test content not empty ->  Failed')
 
     logger.info('Test read files -> Successfully Completed')
 
@@ -74,10 +70,10 @@ def test_read_files_not_found():
     dict_response = response.json()
 
     assert response.status_code == 404, logger.warning(
-        'Test status code ->  Failure')
+        'Test status code ->  Failed')
     assert dict_response['detail'] == 'File not found', logger.warning(
-        'Test file not found ->  Failure')
-    
+        'Test file not found ->  Failed')
+
     logger.info('Test read file not found -> successfully completed')
 
 
@@ -94,8 +90,8 @@ def test_upload_files():
     df.to_excel(writer, 'Hoja de datos', index=False)
     writer.save()
     writer.close()
-    
-    path_file = "test.xlsx" 
+
+    path_file = "test.xlsx"
 
     # Read file as a binary
     with open(path_file, "rb") as file_upload:
@@ -113,9 +109,9 @@ def test_upload_files():
         # Check if status code of reuqest is 200 ok,
         # and json include True into path key saved
         assert response.status_code == 200, logger.warning(
-            'Test status code ->  Failure')
+            'Test status code ->  Failed')
         assert response.json()['saved'] is True, logger.warning(
-            'Test save is TRUE ->  Failure')
+            'Test save is TRUE ->  Failed')
 
         logger.info('Test upload files -> Successfully Completed')
 
@@ -151,16 +147,11 @@ def test_upload_empty_file():
 
         # Check if status code of reuqest is 404 not found,
         # and json include string 'File not found' into path key detail
-<<<<<<< HEAD
         assert response.status_code == 404, logger.warning(
-            'Test status code ->  Failure')
+            'Test status code ->  Failed')
         assert response.json()['detail'] == 'File not found', logger.warning(
-            'Test file not found ->  Failure')
+            'Test file not found ->  Failed')
 
         logger.info('Test upload empty file -> Successfully Completed')
-=======
-        assert response.status_code == 404
-        assert response.json()['detail'] == 'File not found'
 
     os.remove("ds_datas.xlsx")
->>>>>>> main
