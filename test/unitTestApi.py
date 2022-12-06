@@ -1,10 +1,21 @@
 import sys
 import os
+import logging
+import logging.config
 from shutil import rmtree
 from pathlib import Path
-sys.path.append(os.path.join(os.path.dirname(__file__),'../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from fastapi.testclient import TestClient
 from api.apiMain import app
+
+# Path level
+root = Path.cwd().parent
+root = f'{root}/config_logs.conf'
+
+# open file config
+logging.config.fileConfig(root)
+logger = logging.getLogger('test')
+logger.info('beginning tests')
 
 # Call testclient fastapi to make requests
 client = TestClient(app)
@@ -25,17 +36,22 @@ def test_read_files():
     else:
         os.mkdir(Path(__file__).parent.parent / "outputs")
 
-    # Create mock files with some content to will be used by endpoint 
+    # Create mock files with some content to will be used by endpoint
     # to return them
     for name in name_files:
-        with open(Path(__file__).parent.parent / f"outputs/{name}", "w") as file:
+        with open(
+                Path(__file__).parent.parent / f"outputs/{name}", "w") as file:
             file.write("Primera línea")
             file.close()
 
     response = client.get('/dataset/get_data')
 
-    assert response.status_code == 200
-    assert response.content != None
+    assert response.status_code == 200, logger.warning(
+        'Test Status_code -> Failure')
+    assert response.content != None, logger.warning(
+        'Test content not empty ->  Failure')
+
+    logger.info('Test read files -> Successfully Completed')
 
 
 def test_read_files_not_found():
@@ -52,12 +68,16 @@ def test_read_files_not_found():
 
     dict_response = response.json()
 
-    assert response.status_code == 404
-    assert dict_response['detail'] == 'File not found'
+    assert response.status_code == 404, logger.warning(
+        'Test status code ->  Failure')
+    assert dict_response['detail'] == 'File not found', logger.warning(
+        'Test file not found ->  Failure')
+    
+    logger.info('Test read file not found -> successfully completed')
 
 
 def test_upload_files():
-    """Test upload file. Verify status code of request and validation path 
+    """Test upload file. Verify status code of request and validation path
     into json response object
     """
 
@@ -78,8 +98,12 @@ def test_upload_files():
 
         # Check if status code of reuqest is 200 ok,
         # and json include True into path key saved
-        assert response.status_code == 200
-        assert response.json()['saved'] is True
+        assert response.status_code == 200, logger.warning(
+            'Test status code ->  Failure')
+        assert response.json()['saved'] is True, logger.warning(
+            'Test save is TRUE ->  Failure')
+
+        logger.info('Test upload files -> Successfully Completed')
 
         # Delete folder that contain datasets when the test has finished
         rmtree(f"../datasets")
@@ -107,5 +131,9 @@ def test_upload_empty_file():
 
         # Check if status code of reuqest is 404 not found,
         # and json include string 'File not found' into path key detail
-        assert response.status_code == 404
-        assert response.json()['detail'] == 'File not found'
+        assert response.status_code == 404, logger.warning(
+            'Test status code ->  Failure')
+        assert response.json()['detail'] == 'File not found', logger.warning(
+            'Test file not found ->  Failure')
+
+        logger.info('Test upload empty file -> Successfully Completed')

@@ -9,15 +9,10 @@ import logging.config
 # Get root project root
 rootPath = Path(__file__).parent.parent.parent
 
-# # Logs config imports and logger set
-# logging.config.fileConfig(f"{rootPath}/config_logs.conf",
-#                           disable_existing_loggers=False)
-
-# logger = logging.getLogger('simpleLogger')
 # Path level level
 root = Path.cwd().parent
 root = f'{root}/config_logs.conf'
-print(root)
+
 # open file config
 logging.config.fileConfig(root)
 logger = logging.getLogger('api')
@@ -41,7 +36,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 content = file.file.read()
                 myFile.write(content)
 
-                # Select all content into file, then Verify if 
+                # Select all content into file, then Verify if
                 # don't have content into file
                 # and back cursor to the start
                 myFile.seek(0, os.SEEK_END)
@@ -82,7 +77,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                                 status_code=status.HTTP_404_NOT_FOUND,
                                 detail="File not found"
                             )
-                            
+
                 myFile.close()
                 logger.info('File successfuly created')
             return JSONResponse(content={
@@ -90,7 +85,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 'path': f'{rootPath}/datasets/{file.filename}'
             }, status_code=200)
 
-    except FileNotFoundError:        
+    except FileNotFoundError:
         logger.error(f'Error File not found {FileNotFoundError}')
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -113,7 +108,7 @@ def get_csv_url_files() -> dict:
     # stored in the output_dir variable
     for fichero in output_dir.iterdir():
         # Create dictionary with file name as key
-        dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'            
+        dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'
 
     if len(dfUrlDict) == 0:
         logger.error('Error - Files not found')

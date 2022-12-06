@@ -151,3 +151,32 @@ LINE 1: SELECT *  FROM product;
 2022-12-06 10:41:27,340 - simpleLogger - INFO - File successfuly created
 2022-12-06 10:51:59,610 - simpleLogger - ERROR - Error - Files not found
 2022-12-06 10:51:59,626 - simpleLogger - INFO - File successfuly created
+'2022-12-06T11:46' - api - INFO - Starting FastApi
+'2022-12-06T12:18' - api - INFO - Starting FastApi
+'2022-12-06T12:19' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T12:49' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T14:09' - api - INFO - Starting FastApi
+'2022-12-06T14:10' - api - INFO - Starting FastApi
+'2022-12-06T14:10' - api - INFO - Starting FastApi
+'2022-12-06T14:15' - api - INFO - Starting FastApi
+'2022-12-06T15:06' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:06' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:06' - api - ERROR - Error - Files not found
+'2022-12-06T15:08' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:08' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:08' - api - ERROR - Error - Files not found
+'2022-12-06T15:15' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:15' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:15' - api - ERROR - Error - Files not found
+'2022-12-06T15:20' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:20' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:20' - api - ERROR - Error - Files not found
+'2022-12-06T15:23' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:23' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:23' - api - ERROR - Error - Files not found
+'2022-12-06T15:29' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:29' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:29' - api - ERROR - Error - Files not found
+'2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:30' - api - ERROR - Error - Files not found

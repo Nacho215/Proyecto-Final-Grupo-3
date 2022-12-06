@@ -5,13 +5,13 @@ import logging.config
 from pathlib import Path
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__),''))
+sys.path.append(os.path.join(os.path.dirname(__file__), ''))
 from routers import endpoints
 
 # Path level
 root = Path.cwd().parent
 root = f'{root}/config_logs.conf'
-print(root)
+
 # open file config
 logging.config.fileConfig(root)
 logger = logging.getLogger('api')
