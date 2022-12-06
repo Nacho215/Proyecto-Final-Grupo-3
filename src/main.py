@@ -1,14 +1,15 @@
 # Imports
 import sys
-sys.path.append('')
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__),'../'))
 
 import pandas as pd
 import warnings
 import boto3
-import os
 from libs.config import settings
 from libs.db import engine
 from libs.db import CommonActions
+from sqlalchemy.engine import Engine 
 
 
 # Set future warnings off
@@ -199,7 +200,8 @@ def load(df_transactions: pd.DataFrame,
          df_target_customers: pd.DataFrame,
          df_customers: pd.DataFrame,
          s3_csv_save_path: str,
-         s3_credentials: dict):
+         s3_credentials: dict,
+         engine:Engine):
     """
     Function that loads data to the database and also saves it to csv files.
 
@@ -212,6 +214,7 @@ def load(df_transactions: pd.DataFrame,
         s3_csv_save_path (str): path where store the csv files.
         s3_credentials (dict): aws s3 access credentials
     """
+     
     # Saves .csv files in aws s3 bucket
     df_transactions.to_csv(
         f'{s3_csv_save_path}/transactions.csv',
@@ -295,7 +298,8 @@ def run():
             df_end_target_customers,
             df_end_customers,
             S3_FOLDER_SAVE_CSV_PATH,
-            S3_CREDENTIALS
+            S3_CREDENTIALS,
+            engine
         )
     except Exception as e:
         print(f'ETL process failed. Error: {e}')
