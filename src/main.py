@@ -4,10 +4,12 @@ sys.path.append('')
 
 import pandas as pd
 import warnings
+import boto3
+import os
 from libs.config import settings
 from libs.db import engine
 from libs.db import CommonActions
-import boto3
+
 
 # Set future warnings off
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -20,28 +22,41 @@ S3_CREDENTIALS = settings.S3_CREDENTIALS
 S3_BUCKET = settings.S3_BUCKET
 S3_FOLDER_SAVE_CSV_PATH = settings.S3_FOLDER_SAVE_CSV_PATH
 S3_DATASET_PATH = settings.S3_DATASET_PATH
+DATASET_PATH = os.path.join(settings.DATASET_DIR, settings.S3_DATASET_NAME)
 
 
-def download_dataset_from_s3(s3_key:str, s3_secret:str, s3_bucket:str ,s3_dataset_path: str) -> bytes:
-    """Download dataset from aws s3 bucket
+def download_dataset_from_s3(
+    s3_key: str, s3_secret: str,
+    s3_bucket: str, s3_dataset_path: str,
+    output_dataset_path: str
+    ) -> bool:
+    """
+    Download dataset from aws s3 bucket.
 
     Args:
-        s3_key (str): aws key id 
+        s3_key (str): aws key id
         s3_secret (str): aws secret
         s3_bucket (str): s3 bucket name
         s3_dataset_path (str): s3 dataset location
+        output_dataset_path (str): local path to store downloaded dataset.
 
     Returns:
-        bytes : xlsx containing the dataset
-    """    
-    
-    client = boto3.client('s3', 
-                        aws_access_key_id=s3_key, 
-                        aws_secret_access_key=s3_secret
-                        )
-    object_file = client.get_object(Bucket=s3_bucket, Key=s3_dataset_path)
-    dataset = object_file['Body'].read()
-    return dataset
+        bool: True if downloaded dataset successfully.
+            False otherwise.
+    """
+    try:
+        # Download dataset from s3 to local_dataset_path
+        client = boto3.client(
+            's3',
+            aws_access_key_id=s3_key,
+            aws_secret_access_key=s3_secret
+        )
+        client.download_file(s3_bucket, s3_dataset_path, output_dataset_path)
+    except Exception as e:
+        print(f"Failed to download dataset from S3 bucket.\n {e}")
+        return False
+    else:
+        return True
 
 
 def extract(dataset: str) -> tuple:
@@ -197,15 +212,31 @@ def load(df_transactions: pd.DataFrame,
         s3_csv_save_path (str): path where store the csv files.
         s3_credentials (dict): aws s3 access credentials
     """
-    #truncate tables
+    # Saves .csv files in aws s3 bucket
+    df_transactions.to_csv(
+        f'{s3_csv_save_path}/transactions.csv',
+        index=False,
+        storage_options=s3_credentials
+    )
+    df_products.to_csv(
+        f'{s3_csv_save_path}/products.csv',
+        index=False,
+        storage_options=s3_credentials
+    )
+    df_target_customers.to_csv(
+        f'{s3_csv_save_path}/target_customers.csv',
+        index=False,
+        storage_options=s3_credentials
+    )
+    df_customers.to_csv(
+        f'{s3_csv_save_path}/customers.csv',
+        index=False,
+        storage_options=s3_credentials
+    )
+
+    # Truncate tables before load
     commonactions = CommonActions()
     commonactions.truncate_tables()
-
-    # Saves .csv files in aws s3 bucket
-    df_transactions.to_csv(f'{s3_csv_save_path}/transactions.csv', index=False, storage_options=s3_credentials)
-    df_products.to_csv(f'{s3_csv_save_path}/products.csv', index=False, storage_options=s3_credentials)
-    df_target_customers.to_csv(f'{s3_csv_save_path}/target_customers.csv', index=False, storage_options=s3_credentials)
-    df_customers.to_csv(f'{s3_csv_save_path}/customers.csv', index=False, storage_options=s3_credentials)
 
     # Load processed dataframes into database tables
     df_products.to_sql(
@@ -235,19 +266,27 @@ def load(df_transactions: pd.DataFrame,
 
 def run():
     """
-        Function that execute the entire ETL process.
+        Function that executes the entire ETL process.
     """
     # Try to run the ETL process, catching posible exceptions
     try:
         # Download dataset from aws s3 bucket
-        dataset = download_dataset_from_s3(S3_KEY,S3_SECRET,S3_BUCKET,S3_DATASET_PATH)
-        
+        download_dataset_from_s3(
+            S3_KEY,
+            S3_SECRET,
+            S3_BUCKET,
+            S3_DATASET_PATH,
+            DATASET_PATH
+        )
+
         # Extract
         df_transactions, df_target_customers, \
-            df_demographic, df_address = extract(dataset)
+            df_demographic, df_address = extract(DATASET_PATH)
         # Transform
-        df_end_transactions, df_end_products = transform_transactions(df_transactions)
-        df_end_target_customers = transform_target_customers(df_target_customers)
+        df_end_transactions, df_end_products = \
+            transform_transactions(df_transactions)
+        df_end_target_customers = \
+            transform_target_customers(df_target_customers)
         df_end_customers = transform_customers(df_address, df_demographic)
         # Load
         load(
@@ -259,7 +298,7 @@ def run():
             S3_CREDENTIALS
         )
     except Exception as e:
-        print(f'error : {e}')
+        print(f'ETL process failed. Error: {e}')
 
 
 if __name__ == '__main__':

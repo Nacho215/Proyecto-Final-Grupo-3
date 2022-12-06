@@ -13,7 +13,10 @@ client = TestClient(app)
 def test_read_files():
     """Test if endpoint read csv processed files
     """
-    name_files = ["customers.csv", "target_customers.csv", "transactions.csv", "products.csv"]
+    name_files = ["customers.csv",
+                  "target_customers.csv",
+                  "transactions.csv",
+                  "products.csv"]
 
     # If directory exists remove it and create new one to will be test
     print((Path(__file__).parent.parent / "outputs").exists())
@@ -22,7 +25,8 @@ def test_read_files():
     else:
         os.mkdir(Path(__file__).parent.parent / "outputs")
 
-    # Create mock files with some content to will be used by endpoint to return them
+    # Create mock files with some content to will be used by endpoint 
+    # to return them
     for name in name_files:
         with open(Path(__file__).parent.parent / f"outputs/{name}", "w") as file:
             file.write("Primera línea")
@@ -79,6 +83,7 @@ def test_upload_files():
 
         # Delete folder that contain datasets when the test has finished
         rmtree(f"../datasets")
+
 
 def test_upload_empty_file():
     """Test if uploaded file is empty. Verify status code
