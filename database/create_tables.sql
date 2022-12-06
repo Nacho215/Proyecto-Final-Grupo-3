@@ -1,5 +1,3 @@
--- This script is for create tables of project 'customer_transaction'
-
 -- #Create Database
 -- The database was previously created in order to be able to work on it.
 -- create database customer_transaction;
@@ -9,7 +7,7 @@
 -- Products
 drop table if exists products;
 create table products(
-	product_id serial primary key, 
+        product_id serial primary key,
     brand VARCHAR(100) default 'unmarked',
     product_line VARCHAR(100),
     product_class VARCHAR(100),
@@ -39,7 +37,7 @@ create table current_customers(
 -- Transaction
 drop table if exists transactions;
 create table transactions(
-	transaction_id serial,
+        transaction_id serial,
     customer_id INT not null,
     transaction_date DATE check(transaction_date > '1900-01-01'),
     online_order bool,
@@ -50,19 +48,18 @@ create table transactions(
     product_id INT not null,
     primary key (transaction_id),
     constraint fk_customer
-    	foreign key (customer_id)
-    		references current_customers(customer_id)
-    		on delete set null,
+        foreign key (customer_id)
+                references current_customers(customer_id)
+                on delete set null,
     constraint fk_product
-    	foreign key (product_id)
-    		references products(product_id)
-    		on delete set null
+        foreign key (product_id)
+                references products(product_id)
+                on delete set null
 );
 -- Targeted Customer
-drop table if exists target_customers;
 create table target_customers(
-	target_id serial primary key,
-   	first_name VARCHAR(150) default 'NN',
+        target_id serial primary key,
+        first_name VARCHAR(150) default 'NN',
     last_name VARCHAR(150) default 'NN',
     gender VARCHAR(150),
     past_3_years_bike_related_purchases INT,
@@ -79,8 +76,3 @@ create table target_customers(
     country VARCHAR(150),
     property_valuation INT
 );
-
-
-
-
-
