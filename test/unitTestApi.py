@@ -4,7 +4,13 @@ import logging
 import logging.config
 from shutil import rmtree
 from pathlib import Path
+<<<<<<< HEAD
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+=======
+import pandas as pd
+from pandas import ExcelWriter
+sys.path.append(os.path.join(os.path.dirname(__file__),'../'))
+>>>>>>> main
 from fastapi.testclient import TestClient
 from api.apiMain import app
 
@@ -30,7 +36,6 @@ def test_read_files():
                   "products.csv"]
 
     # If directory exists remove it and create new one to will be test
-    print((Path(__file__).parent.parent / "outputs").exists())
     if (Path(__file__).parent.parent / "outputs").exists():
         rmtree(Path(__file__).parent.parent / "outputs")
     else:
@@ -55,7 +60,7 @@ def test_read_files():
 
 
 def test_read_files_not_found():
-    """Test empty folder
+    """Test if the folder is empty
     """
     path = Path(__file__).parent.parent / "outputs"
 
@@ -80,9 +85,17 @@ def test_upload_files():
     """Test upload file. Verify status code of request and validation path
     into json response object
     """
-
-    # Indicate psth of some file that you would like to upload to test
-    path_file = "D:/ds_salaries_upd.xlsx"
+    # Create excel file with a litle dataframe for the upload tests
+    df = pd.DataFrame({'Id': [1, 3, 2, 4],
+                   'Nombre': ['Juan', 'Eva', 'María', 'Pablo'],
+                   'Apellido': ['Méndez', 'López', 'Tito', 'Hernández']})
+    df = df[['Id', 'Nombre', 'Apellido']]
+    writer = ExcelWriter('test.xlsx')
+    df.to_excel(writer, 'Hoja de datos', index=False)
+    writer.save()
+    writer.close()
+    
+    path_file = "test.xlsx" 
 
     # Read file as a binary
     with open(path_file, "rb") as file_upload:
@@ -95,6 +108,7 @@ def test_upload_files():
                                 file,
                                 "multipart/form-data")}
                 )
+        file_upload.close()
 
         # Check if status code of reuqest is 200 ok,
         # and json include True into path key saved
@@ -105,17 +119,22 @@ def test_upload_files():
 
         logger.info('Test upload files -> Successfully Completed')
 
-        # Delete folder that contain datasets when the test has finished
-        rmtree(f"../datasets")
+    # Delete folder that contain datasets when the test has finished
+    rmtree("../datasets")
+    os.remove("test.xlsx")
 
 
 def test_upload_empty_file():
     """Test if uploaded file is empty. Verify status code
     of request and validation path into json response object
     """
+    # Create generic empty file to test
+    with open("ds_datas.xlsx", "w") as file:
+        file.write("")
+        file.close()
 
     # Indicate psth of some file that you would like to upload to test
-    path_file = "C:/Users/ale/Downloads/texto.txt"
+    path_file = "ds_datas.xlsx"
 
     # Read file as a binary
     with open(path_file, "rb") as file_upload:
@@ -128,12 +147,20 @@ def test_upload_empty_file():
                                 file,
                                 "multipart/form-data")}
                 )
+        file_upload.close()
 
         # Check if status code of reuqest is 404 not found,
         # and json include string 'File not found' into path key detail
+<<<<<<< HEAD
         assert response.status_code == 404, logger.warning(
             'Test status code ->  Failure')
         assert response.json()['detail'] == 'File not found', logger.warning(
             'Test file not found ->  Failure')
 
         logger.info('Test upload empty file -> Successfully Completed')
+=======
+        assert response.status_code == 404
+        assert response.json()['detail'] == 'File not found'
+
+    os.remove("ds_datas.xlsx")
+>>>>>>> main
