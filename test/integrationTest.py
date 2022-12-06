@@ -16,7 +16,7 @@ from src.main import transform_customers
 from src.main import load
 from src.main import download_dataset_from_s3
 
-
+# Parameters to will be use into tests
 S3_KEY = settings.S3_KEY
 S3_SECRET = settings.S3_SECRET
 S3_BUCKET = settings.S3_BUCKET
@@ -24,20 +24,23 @@ S3_DATASET_PATH = settings.S3_DATASET_PATH
 DATASET_PATH = os.path.join(settings.DATASET_DIR, settings.S3_DATASET_NAME)
 S3_CREDENTIALS = settings.S3_CREDENTIALS
 S3_FOLDER_SAVE_CSV_PATH = settings.S3_FOLDER_SAVE_CSV_PATH
+DATASET_DIR = settings.DATASET_DIR
 
-db_path = os.path.join(os.path.dirname(__file__),'test.db')
+# Create database, engine, session and tables into database
+db_path = os.path.join(os.path.dirname(__file__), 'test.db')
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{db_path}"
-
 engine_test = create_engine(SQLALCHEMY_DATABASE_URL)
-
 TestingSessionLocal = sessionmaker(bind=engine_test)
-
 Base.metadata.create_all(bind=engine_test)
 
 
 @pytest.fixture
-def dataframes_generate() -> pd.DataFrame:
+def dataframes_generate() -> tuple(pd.DataFrame):
+    """Function that return dataframes to will be use into tests
 
+    Returns:
+        tuple(pd.DataFrame): Touple of dataframes downloaded and transformed
+    """
     # If path not exist so create teporary folder to datasets
     if not (Path(__file__).parent.parent / "datasets").exists():
         os.mkdir(Path(__file__).parent.parent / "datasets")
@@ -48,7 +51,8 @@ def dataframes_generate() -> pd.DataFrame:
         S3_SECRET,
         S3_BUCKET,
         S3_DATASET_PATH,
-        DATASET_PATH
+        DATASET_PATH,
+        DATASET_DIR
     )
 
     # Extract
@@ -63,6 +67,7 @@ def dataframes_generate() -> pd.DataFrame:
 
     return df_end_transactions, df_end_products,\
         df_end_target_customers, df_end_customers
+
 
 @pytest.mark.filterwarnings("ignore::FutureWarning")
 def test_dataframe_load_database(dataframes_generate):
@@ -106,15 +111,15 @@ def test_dataframe_load_database(dataframes_generate):
 
     conn.close()
 
-    os.remove(os.path.join(os.path.dirname(__file__),'test.db'))
+    os.remove(os.path.join(os.path.dirname(__file__), 'test.db'))
 
     rmtree(Path(__file__).parent.parent / "datasets")
 
+
 @pytest.mark.filterwarnings("ignore::FutureWarning")
-# @pytest.mark.parametrize("df, expected", )
-def empty_dataframes_to_database(dataframes_generate):
-    """Test function that verify if tables was created into database with all 
-    records
+def test_empty_dataframes_to_database(dataframes_generate):
+    """Test if load function rise correct exception if 
+    I send an emmpty dataframe
 
     Args:
         dataframes_generate (pd.DataFrame): _description_
@@ -123,17 +128,16 @@ def empty_dataframes_to_database(dataframes_generate):
         df_end_target_customers, df_end_customers = dataframes_generate
     
     df_end_transactions = pd.DataFrame({})
+    df_end_products = pd.DataFrame({})
 
-    load(
-        df_end_transactions,
-        df_end_products,
-        df_end_target_customers,
-        df_end_customers,
-        S3_FOLDER_SAVE_CSV_PATH,
-        S3_CREDENTIALS,
-        engine_test
-    )    
+    return_value = load(
+                    df_end_transactions,
+                    df_end_products,
+                    df_end_target_customers,
+                    df_end_customers,
+                    S3_FOLDER_SAVE_CSV_PATH,
+                    S3_CREDENTIALS,
+                    engine_test
+                )
+    assert return_value == ValueError
 
-    os.remove(os.path.join(os.path.dirname(__file__),'test.db'))
-
-    rmtree(Path(__file__).parent.parent / "datasets")
