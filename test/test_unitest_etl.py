@@ -12,7 +12,8 @@ This module contains the unit tests corresponding to the src.main module:
 import sys
 sys.path.append('..')
 import pandas as pd
-from src.main import S3_KEY, S3_SECRET, S3_BUCKET, S3_DATASET_PATH, DATASET_PATH, DATASET_DIR
+from src.main import S3_KEY, S3_SECRET, S3_BUCKET, \
+    S3_DATASET_PATH, DATASET_PATH, DATASET_DIR
 from src.main import download_dataset_from_s3, extract, transform_transactions, transform_target_customers, transform_customers
 import botocore
 import pytest
@@ -20,10 +21,12 @@ import pytest
 
 # --------- START TEST download_dataset_from_s3 function --------
 
-@pytest.mark.parametrize('s3_key, s3_secret, s3_bucket, s3_dataset_path,dataset_path, dataset_dir, expected_exception', [
+@pytest.mark.parametrize('s3_key, s3_secret, s3_bucket, s3_dataset_path,\
+    dataset_path, dataset_dir, expected_exception', [
     # key and secret incorrect
     ('AZUasdHWTZ2MDHCZHO6', 'IAZasdUasdHWTZ2MDHCZHO6', S3_BUCKET,
-     S3_DATASET_PATH, DATASET_PATH, DATASET_DIR, botocore.exceptions.ClientError),
+     S3_DATASET_PATH, DATASET_PATH, DATASET_DIR, 
+     botocore.exceptions.ClientError),
 
     (S3_KEY, S3_SECRET, 'BUCKET_NO_EXIST', S3_DATASET_PATH,
      DATASET_PATH, DATASET_DIR, botocore.exceptions.ClientError),
@@ -36,9 +39,14 @@ import pytest
 
 ]
 )
-def test_download_dataset_from_s3(s3_key, s3_secret, s3_bucket, s3_dataset_path, dataset_path, dataset_dir, expected_exception):
+def test_download_dataset_from_s3(s3_key, s3_secret,
+                                  s3_bucket, s3_dataset_path,
+                                  dataset_path, dataset_dir,
+                                  expected_exception):
     assert type(download_dataset_from_s3(
-            s3_key, s3_secret, s3_bucket, s3_dataset_path, dataset_path, dataset_dir)) == expected_exception
+            s3_key, s3_secret, s3_bucket, s3_dataset_path,
+            dataset_path, dataset_dir)) == expected_exception
+
 
 def test_download_dataset_from_s3_success():
     assert download_dataset_from_s3(S3_KEY, S3_SECRET, S3_BUCKET, S3_DATASET_PATH, DATASET_PATH, DATASET_DIR) == None
@@ -78,7 +86,8 @@ def test_extract_success():
 @pytest.mark.parametrize('df_transactions, expected_exception',
                          [
                              (pd.DataFrame(), KeyError),
-                             (pd.DataFrame({'name': ['ricardo', 'nacho'], 'last_name': [
+                             (pd.DataFrame({'name': ['ricardo', 'nacho'],
+                              'last_name': [
                                  'apellido1', 'apellido2']}), KeyError),
                          ]
                          )
@@ -97,12 +106,14 @@ def test_transform_transactions_success():
 @pytest.mark.parametrize('df_target_customers, expected_exception',
                          [
                              (pd.DataFrame(), KeyError),
-                             (pd.DataFrame({'name': ['ricardo', 'nacho'], 'last_name': [
+                             (pd.DataFrame({'name': ['ricardo', 'nacho'],
+                                            'last_name': [
                                  'apellido1', 'apellido2']}), KeyError),
                          ]
                          )
 def test_transform_target_customers(df_target_customers, expected_exception):
-    assert expected_exception == type(transform_target_customers(df_target_customers))
+    assert expected_exception == type(transform_target_customers(
+                                        df_target_customers))
 
 
 def test_transform_target_customers_success():
@@ -118,9 +129,12 @@ def test_transform_target_customers_success():
 @pytest.mark.parametrize('df_address, df_demographic, expected_exception',
                          [
                              (pd.DataFrame(), pd.DataFrame(), KeyError),
-                             (pd.DataFrame({'name': ['ricardo', 'nacho'], 'last_name': ['apellido1', 'apellido2']}),
-                                 pd.DataFrame({'name': ['ricardo', 'nacho'], 'last_name': [
-                                              'apellido1', 'apellido2']}), KeyError),
+                             (pd.DataFrame({'name': ['ricardo', 'nacho'],
+                              'last_name': ['apellido1', 'apellido2']}),
+                                 pd.DataFrame({'name': ['ricardo', 'nacho'],
+                                              'last_name': [
+                                              'apellido1', 'apellido2']}),
+                              KeyError),
                          ]
                          )
 def test_transform_customers(df_address, df_demographic, expected_exception):
@@ -132,4 +146,3 @@ def test_transform_customers_success():
         df_address, df_demographic)) == pd.DataFrame
 
 # --------- END TEST transform_customers function ---------
-

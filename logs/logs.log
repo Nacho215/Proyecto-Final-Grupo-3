@@ -205,3 +205,297 @@ LINE 1: SELECT *  FROM product;
 '2022-12-06T20:16' - API - INFO - File successfuly created
 '2022-12-06T20:16' - API - INFO - Function Upload -> Return file Uploaded
 '2022-12-06T20:16' - API - ERROR - Failed -> File empty
+'2022-12-07T09:03' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T09:03' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T09:03' - API - ERROR - Failed - Files not found
+'2022-12-07T09:03' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T09:03' - API - INFO - File successfuly created
+'2022-12-07T09:03' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T09:03' - API - ERROR - Failed -> File empty
+'2022-12-07T09:07' - DB - INFO - Truncated Tables successful
+'2022-12-07T09:29' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T09:29' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T09:29' - API - ERROR - Failed - Files not found
+'2022-12-07T09:29' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T09:29' - API - INFO - File successfuly created
+'2022-12-07T09:29' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T09:29' - API - ERROR - Failed -> File empty
+'2022-12-07T09:30' - DB - INFO - Truncated Tables successful
+'2022-12-07T09:40' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T09:40' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T09:40' - API - ERROR - Failed - Files not found
+'2022-12-07T09:40' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T09:40' - API - INFO - File successfuly created
+'2022-12-07T09:40' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T09:40' - API - ERROR - Failed -> File empty
+'2022-12-07T09:40' - DB - INFO - Truncated Tables successful
+'2022-12-07T10:04' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:04' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:04' - API - ERROR - Failed - Files not found
+'2022-12-07T10:04' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:04' - API - INFO - File successfuly created
+'2022-12-07T10:04' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:04' - API - ERROR - Failed -> File empty
+'2022-12-07T10:04' - DB - INFO - Truncated Tables successful
+'2022-12-07T10:07' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:07' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:07' - API - ERROR - Failed - Files not found
+'2022-12-07T10:07' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:07' - API - INFO - File successfuly created
+'2022-12-07T10:07' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:07' - API - ERROR - Failed -> File empty
+'2022-12-07T10:07' - DB - INFO - Truncated Tables successful
+'2022-12-07T10:17' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:17' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:17' - API - ERROR - Failed - Files not found
+'2022-12-07T10:17' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:17' - API - INFO - File successfuly created
+'2022-12-07T10:17' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:17' - API - ERROR - Failed -> File empty
+'2022-12-07T10:18' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:18' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:18' - API - ERROR - Failed - Files not found
+'2022-12-07T10:18' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:18' - API - INFO - File successfuly created
+'2022-12-07T10:18' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:18' - API - ERROR - Failed -> File empty
+'2022-12-07T10:18' - DB - INFO - Truncated Tables successful
+'2022-12-07T10:19' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:19' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T10:19' - API - ERROR - Failed - Files not found
+'2022-12-07T10:19' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:19' - API - INFO - File successfuly created
+'2022-12-07T10:19' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T10:19' - API - ERROR - Failed -> File empty
+'2022-12-07T10:20' - DB - INFO - Truncated Tables successful
+'2022-12-07T10:34' - DB - ERROR - Truncate tables Failed, stoping script 'sessionmaker' object has no attribute 'execute'
+'2022-12-07T10:37' - DB - ERROR - Truncate tables Failed, stoping script 'sessionmaker' object has no attribute 'execute'
+'2022-12-07T10:38' - DB - INFO - Truncated Tables successful
+'2022-12-07T12:25' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T12:25' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T12:25' - API - ERROR - Failed - Files not found
+'2022-12-07T12:25' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T12:25' - API - INFO - File successfuly created
+'2022-12-07T12:25' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T12:25' - API - ERROR - Failed -> File empty
+'2022-12-07T12:30' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: '../datasets\\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T12:34' - ETL - INFO - Starting ETL process.
+'2022-12-07T12:34' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T12:35' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T12:35' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T12:35' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T12:35' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T12:35' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-07T12:35' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T12:35' - ETL - INFO - ETL process finished sucessfully.
+'2022-12-07T12:36' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T12:36' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (403) when calling the HeadObject operation: Forbidden
+'2022-12-07T12:36' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T12:36' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T12:36' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: 'folder_no_exist\\file_no_exist.xlsx.dfB39Bc9'
+'2022-12-07T12:36' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T12:36' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: ''
+'2022-12-07T12:36' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: './outputs/dataset_not_exist.xlsx'
+'2022-12-07T12:36' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T12:36' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T12:36' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T12:36' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T12:36' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T12:36' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T12:36' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T12:36' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T12:36' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T12:36' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T12:46' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T12:46' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T12:46' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T12:46' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T12:46' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T12:46' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-07T12:46' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T12:46' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T12:46' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T12:46' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T12:46' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T12:46' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T12:46' - ETL - ERROR - Cannot load empty dataframes. 
+'2022-12-07T13:38' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T13:38' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (403) when calling the HeadObject operation: Forbidden
+'2022-12-07T13:38' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T13:38' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T13:38' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: 'folder_no_exist\\file_no_exist.xlsx.a1AD1d8d'
+'2022-12-07T13:38' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T13:38' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: ''
+'2022-12-07T13:38' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: './outputs/dataset_not_exist.xlsx'
+'2022-12-07T13:38' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T13:38' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T13:38' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T13:38' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T13:38' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T13:38' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T13:38' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T13:38' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T13:38' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T13:38' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T13:49' - ETL - INFO - Starting ETL process.
+'2022-12-07T13:49' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T13:49' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T13:49' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T13:49' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T13:49' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T13:50' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-07T13:50' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T13:50' - ETL - INFO - ETL process finished sucessfully.
+'2022-12-07T13:59' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T13:59' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T13:59' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T13:59' - API - ERROR - Failed - Files not found
+'2022-12-07T13:59' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T13:59' - API - INFO - File successfuly created
+'2022-12-07T13:59' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T13:59' - API - ERROR - Failed -> File empty
+'2022-12-07T13:59' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:00' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:00' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:00' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:00' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:00' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-07T14:00' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T14:00' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:01' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:01' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:01' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:01' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:01' - ETL - ERROR - Cannot load empty dataframes. 
+'2022-12-07T14:01' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (403) when calling the HeadObject operation: Forbidden
+'2022-12-07T14:01' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T14:01' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T14:01' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: 'folder_no_exist\\file_no_exist.xlsx.cB0f2EeD'
+'2022-12-07T14:01' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:01' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: ''
+'2022-12-07T14:01' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: './outputs/dataset_not_exist.xlsx'
+'2022-12-07T14:01' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:01' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T14:01' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T14:01' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:01' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T14:01' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T14:01' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:01' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T14:01' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T14:01' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:06' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:08' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:11' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T14:11' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T14:11' - API - ERROR - Failed - Files not found
+'2022-12-07T14:11' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T14:11' - API - INFO - File successfuly created
+'2022-12-07T14:11' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T14:11' - API - ERROR - Failed -> File empty
+'2022-12-07T14:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T14:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-07T14:12' - API - ERROR - Failed - Files not found
+'2022-12-07T14:12' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T14:12' - API - INFO - File successfuly created
+'2022-12-07T14:12' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-07T14:12' - API - ERROR - Failed -> File empty
+'2022-12-07T14:13' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:13' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:13' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:13' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:13' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:13' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-07T14:13' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T14:13' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:13' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:13' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:13' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:13' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:13' - ETL - ERROR - Cannot load empty dataframes. 
+'2022-12-07T14:14' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:14' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (403) when calling the HeadObject operation: Forbidden
+'2022-12-07T14:14' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T14:14' - ETL - ERROR - Failed to download dataset from S3 bucket. An error occurred (404) when calling the HeadObject operation: Not Found
+'2022-12-07T14:14' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: 'folder_no_exist\\file_no_exist.xlsx.c6AA0Ed7'
+'2022-12-07T14:14' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:14' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: ''
+'2022-12-07T14:14' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: './outputs/dataset_not_exist.xlsx'
+'2022-12-07T14:15' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:15' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T14:15' - ETL - ERROR - Dataset is not a valid 'Transactions' datasetfor this transformation process. "['product_id'] not found in axis"
+'2022-12-07T14:15' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:15' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T14:15' - ETL - ERROR - Dataset is not a valid 'Target Customers' datasetfor this transformation process. 'gender'
+'2022-12-07T14:15' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:15' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T14:15' - ETL - ERROR - Dataset is not a valid 'Customers' datasetfor this transformation process. 'customer_id'
+'2022-12-07T14:15' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:17' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:21' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:23' - ETL - ERROR - Failed to locate file. [Errno 2] No such file or directory: '../datasets\\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:23' - ETL - INFO - Starting ETL process.
+'2022-12-07T14:23' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:24' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:24' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:24' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:24' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:24' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-07T14:24' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T14:24' - ETL - INFO - ETL process finished sucessfully.
+'2022-12-07T14:25' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:31' - ETL - INFO - Starting ETL process.
+'2022-12-07T14:31' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:32' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:32' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:32' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:32' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:32' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-07T14:32' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T14:32' - ETL - INFO - ETL process finished sucessfully.
+'2022-12-07T14:32' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:33' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:33' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:33' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:33' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:33' - DB - ERROR - Truncate tables failed. (sqlite3.OperationalError) near "TRUNCATE": syntax error
+[SQL: TRUNCATE TABLE transactions, products, current_customers, target_customers]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+'2022-12-07T14:33' - ETL - ERROR - An error ocurred while loading dataframes. (sqlite3.OperationalError) near "TRUNCATE": syntax error
+[SQL: TRUNCATE TABLE transactions, products, current_customers, target_customers]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+'2022-12-07T14:33' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:33' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:33' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:33' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:33' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:33' - ETL - ERROR - Cannot load empty dataframes. 
+'2022-12-07T14:39' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:39' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:39' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:39' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:39' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:39' - DB - ERROR - Truncate tables failed. (sqlite3.OperationalError) near "TRUNCATE": syntax error
+[SQL: TRUNCATE TABLE transactions, products, current_customers, target_customers]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+'2022-12-07T14:39' - ETL - ERROR - An error ocurred while loading dataframes. (sqlite3.OperationalError) near "TRUNCATE": syntax error
+[SQL: TRUNCATE TABLE transactions, products, current_customers, target_customers]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+'2022-12-07T14:39' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:39' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:39' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:39' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:39' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:39' - ETL - ERROR - Cannot load empty dataframes. 
+'2022-12-07T14:46' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:46' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:46' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:46' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:46' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:46' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-07T14:46' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-07T14:47' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-07T14:47' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-07T14:47' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-07T14:47' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-07T14:47' - ETL - ERROR - Cannot load empty dataframes. 

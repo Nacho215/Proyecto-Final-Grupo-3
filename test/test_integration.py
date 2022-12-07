@@ -99,7 +99,8 @@ def test_dataframe_load_database(dataframes_generate):
         df_end_customers,
         S3_FOLDER_SAVE_CSV_PATH,
         S3_CREDENTIALS,
-        engine_test
+        engine_test,
+        testing=True
     )
 
     conn = engine_test.connect()
@@ -156,7 +157,8 @@ def test_empty_dataframes_to_database(dataframes_generate):
                     df_end_customers,
                     S3_FOLDER_SAVE_CSV_PATH,
                     S3_CREDENTIALS,
-                    engine_test
+                    engine_test,
+                    testing=True
                 )
     assert return_value == ValueError, logger.warning(
             'Test check if return ValueError -> Failed')
