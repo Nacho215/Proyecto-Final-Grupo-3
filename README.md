@@ -54,7 +54,7 @@ cd src
 python main.py
 ```
 
-## Indice
+## 📄 Index
 ----
 > Mediante este idice podras ir directamente al modulo que desee para ver su funcionamiento y ejecutarlo por separado mediante sus intrucciones
 
