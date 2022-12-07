@@ -10,7 +10,7 @@ This module contains the unit tests corresponding to the src.main module:
 
 '''
 import sys
-sys.path.append('')
+sys.path.append('..')
 import pandas as pd
 from src.main import S3_KEY, S3_SECRET, S3_BUCKET, S3_DATASET_PATH, DATASET_PATH, DATASET_DIR
 from src.main import download_dataset_from_s3, extract, transform_transactions, transform_target_customers, transform_customers
@@ -41,7 +41,7 @@ def test_download_dataset_from_s3(s3_key, s3_secret, s3_bucket, s3_dataset_path,
             s3_key, s3_secret, s3_bucket, s3_dataset_path, dataset_path, dataset_dir)) == expected_exception
 
 def test_download_dataset_from_s3_success():
-    assert download_dataset_from_s3(S3_KEY, S3_SECRET, S3_BUCKET, S3_DATASET_PATH, DATASET_PATH, DATASET_DIR) == True
+    assert download_dataset_from_s3(S3_KEY, S3_SECRET, S3_BUCKET, S3_DATASET_PATH, DATASET_PATH, DATASET_DIR) == None
 
 # --------- END TEST download_dataset_from_s3 function ---------
 
