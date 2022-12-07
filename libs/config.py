@@ -35,6 +35,7 @@ class Settings:
 
     # Local paths
     DATASET_DIR: str = os.getenv('DATASET_DIR')
+    LOGS_CONFIG_FILE_PATH: str = os.getenv('LOGS_CONFIG_FILE_PATH')
 
 
 # Reference to class
