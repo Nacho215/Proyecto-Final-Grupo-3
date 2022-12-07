@@ -47,11 +47,11 @@ Base.metadata.create_all(bind=engine_test)
 
 
 @pytest.fixture
-def dataframes_generate() -> tuple(pd.DataFrame):
+def dataframes_generate() -> pd.DataFrame:
     """Function that return dataframes to will be use into tests
 
     Returns:
-        tuple(pd.DataFrame): Touple of dataframes downloaded and transformed
+        pd.DataFrame: Touple of dataframes downloaded and transformed
     """
     # If path not exist so create teporary folder to datasets
     if not (Path(__file__).parent.parent / "datasets").exists():

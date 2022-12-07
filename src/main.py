@@ -1,15 +1,17 @@
 # Imports
+import logging
+import logging.config
+import botocore
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__),'../'))
-
 import pandas as pd
 import warnings
 import boto3
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from libs.config import settings
-from libs.db import engine
+from libs.db import engine as db_engine
 from libs.db import CommonActions
-from sqlalchemy.engine import Engine 
+from sqlalchemy.engine import Engine
 
 
 # Set future warnings off
@@ -26,13 +28,17 @@ S3_DATASET_PATH = settings.S3_DATASET_PATH
 DATASET_PATH = os.path.join(settings.DATASET_DIR, settings.S3_DATASET_NAME)
 DATASET_DIR = settings.DATASET_DIR
 
+# Setup logger
+logging.config.fileConfig('../config_logs.conf')
+logger = logging.getLogger('ETL')
+
 
 def download_dataset_from_s3(
     s3_key: str, s3_secret: str,
     s3_bucket: str, s3_dataset_path: str,
     output_dataset_path: str,
     dataset_dir: str
-        ) -> bool:
+) -> Exception | None:
     """
     Download dataset from aws s3 bucket.
 
@@ -44,8 +50,8 @@ def download_dataset_from_s3(
         output_dataset_path (str): local path to store downloaded dataset.
         dataset_dir (str): Directory where the data set is stored
     Returns:
-        bool: True if downloaded dataset successfully.
-            False otherwise.
+        Exception | None: Return the exception captured if any,
+            or None if downloaded dataset successfully.
     """
     try:
         # Download dataset from s3 to local_dataset_path
@@ -55,19 +61,28 @@ def download_dataset_from_s3(
             aws_secret_access_key=s3_secret
         )
 
-        # create directory to save the dataset if it does not exist
+        # Create directory to save the dataset if it does not exist
         if not os.path.exists(dataset_dir):
             os.mkdir(dataset_dir)
-
         client.download_file(s3_bucket, s3_dataset_path, output_dataset_path)
-    except Exception as e:
-        print(f"Failed to download dataset from S3 bucket.\n {e}")
-        return False
+    except botocore.exceptions.ClientError as boto3_error:
+        logger.error(
+            f"Failed to download dataset from S3 bucket. {boto3_error}"
+        )
+        return boto3_error
+    except FileNotFoundError as file_error:
+        logger.error(
+            f"Failed to locate file. {file_error}"
+        )
+        return file_error
     else:
-        return True
+        logger.info(
+            f"Dataset downloaded successfully at: '{output_dataset_path}'"
+        )
+        return None
 
 
-def extract(dataset: str) -> tuple:
+def extract(dataset: str) -> tuple | Exception:
     """
     Function that extracts data from dataset
     and convert it into a dataframe.
@@ -76,7 +91,8 @@ def extract(dataset: str) -> tuple:
         dataset (str): dataset location
 
     Returns:
-        tuple: tuple containing the generated dataframes
+        tuple | Exception: tuple containing the generated dataframes
+            or exception captured if any.
     """
     try:
         df_transactions = pd.read_excel(dataset, "Transactions", skiprows=[0])
@@ -84,15 +100,24 @@ def extract(dataset: str) -> tuple:
             dataset, "NewCustomerList", skiprows=[0])
         df_demographic = pd.read_excel(dataset, "CustomerDemographic")
         df_address = pd.read_excel(dataset, "CustomerAddress", skiprows=[0])
-    except FileNotFoundError:
-        print('error al abrir el dataset')
-    except Exception as e:
-        print(f'se produjo un error al extraer los dataframes del dataset {e}')
+    except FileNotFoundError as file_error:
+        logger.error(
+            f"Failed to locate file. {file_error}"
+        )
+        return file_error
+    except Exception as exc:
+        logger.error(
+            f"An error ocurred trying to extract data from the dataset. {exc}"
+        )
+        return exc
+    else:
+        logger.info(
+            "Data extracted from dataset successfully."
+        )
+        return df_transactions, df_target_customers, df_demographic, df_address
 
-    return df_transactions, df_target_customers, df_demographic, df_address
 
-
-def transform_transactions(df_transactions: pd.DataFrame) -> tuple:
+def transform_transactions(df_transactions: pd.DataFrame) -> tuple | Exception:
     """
     Function that transforms transactions data.
 
@@ -100,7 +125,8 @@ def transform_transactions(df_transactions: pd.DataFrame) -> tuple:
         df_transactions (pd.DataFrame): transactions DataFrame.
 
     Returns:
-        tuple: tuple containing transactions and products DataFrames.
+        tuple | Exception: tuple containing transactions
+            and products DataFrames or exception captured if any.
     """
 
     try:
@@ -155,16 +181,28 @@ def transform_transactions(df_transactions: pd.DataFrame) -> tuple:
             df_transactions['customer_id'] > 4000
             ].index.tolist()
         df_transactions.drop(index=index_drop, inplace=True)
-    except KeyError:
-        print('existe un error en el dataset')
-    except Exception as e:
-        print(f'se produjo un error al procesar el dataset {e}')
-
-    return df_transactions, df_products
+    except KeyError as key_error:
+        logger.error(
+            "Dataset is not a valid 'Transactions' dataset" +
+            f"for this transformation process. {key_error}"
+        )
+        return key_error
+    except Exception as exc:
+        logger.error(
+            "An error ocurred while transforming" +
+            f"'Transactions' dataset. {exc}"
+        )
+        return exc
+    else:
+        logger.info(
+            "'Transactions' dataset transformed successfully."
+        )
+        return df_transactions, df_products
 
 
 def transform_target_customers(
-        df_target_customers: pd.DataFrame) -> pd.DataFrame:
+    df_target_customers: pd.DataFrame
+) -> pd.DataFrame | Exception:
     """
     Function that transforms target customers data.
 
@@ -172,8 +210,9 @@ def transform_target_customers(
         df_target_customers (pd.DataFrame): target customers DataFrame.
 
     Returns:
-        pd.DataFrame: dataframe df_target_customers
-                      with the transformations performed.
+        pd.DataFrame | Exception: dataframe df_target_customers
+            with the transformations performed,
+            or exception captured if any.
     """
     # Drop "Unnamed", "Rank" and "Value" columns
     # since they dont give us any useful information.
@@ -185,16 +224,29 @@ def transform_target_customers(
             df_target_customers["gender"].astype('category')
         df_target_customers["owns_car"] = \
             df_target_customers["owns_car"].astype('bool')
-    except KeyError:
-        print('existe un error en el dataset')
-    except Exception as error:
-        print(f'se produjo un error al procesar el dataset {error}')
+    except KeyError as key_error:
+        logger.error(
+            "Dataset is not a valid 'Target Customers' dataset" +
+            f"for this transformation process. {key_error}"
+        )
+        return key_error
+    except Exception as exc:
+        logger.error(
+            "An error ocurred while transforming" +
+            f"'Target Customers' dataset. {exc}"
+        )
+        return exc
+    else:
+        logger.info(
+            "'Target Customers' dataset transformed successfully."
+        )
+        return df_target_customers
 
-    return df_target_customers
 
-
-def transform_customers(df_address: pd.DataFrame,
-                        df_demographic: pd.DataFrame) -> pd.DataFrame:
+def transform_customers(
+    df_address: pd.DataFrame,
+    df_demographic: pd.DataFrame
+) -> pd.DataFrame | Exception:
     """
     Function that transforms customer data.
 
@@ -203,7 +255,8 @@ def transform_customers(df_address: pd.DataFrame,
         df_demographic (pd.DataFrame): customer demographics DataFrame.
 
     Returns:
-        pd.DataFrame: unified and normalized customers DataFrame.
+        pd.DataFrame | Exception: unified and normalized customers DataFrame,
+            or exception captured if any.
     """
     try:
         # Left merge both DataFrames on 'customer_id'
@@ -216,21 +269,34 @@ def transform_customers(df_address: pd.DataFrame,
         df_customers.rename(columns={'DOB': 'birth_date'}, inplace=True)
         df_customers["gender"] = df_customers["gender"].astype('category')
         df_customers["owns_car"] = df_customers["owns_car"].astype('bool')
-    except KeyError:
-        print('existe un error en el dataset')
-    except Exception as e:
-        print(f'se produjo un error al procesar el dataset {e}')
+    except KeyError as key_error:
+        logger.error(
+            "Dataset is not a valid 'Customers' dataset" +
+            f"for this transformation process. {key_error}"
+        )
+        return key_error
+    except Exception as exc:
+        logger.error(
+            "An error ocurred while transforming" +
+            f"'Customers' dataset. {exc}"
+        )
+        return exc
+    else:
+        logger.info(
+            "'Customers' dataset transformed successfully."
+        )
+        return df_customers
 
-    return df_customers
 
-
-def load(df_transactions: pd.DataFrame,
-         df_products: pd.DataFrame,
-         df_target_customers: pd.DataFrame,
-         df_customers: pd.DataFrame,
-         s3_csv_save_path: str,
-         s3_credentials: dict,
-         engine: Engine) -> Exception:
+def load(
+    df_transactions: pd.DataFrame,
+    df_products: pd.DataFrame,
+    df_target_customers: pd.DataFrame,
+    df_customers: pd.DataFrame,
+    s3_csv_save_path: str,
+    s3_credentials: dict,
+    engine: Engine
+) -> Exception | None:
     """
     Function that loads data to the database and also saves it to csv files.
 
@@ -241,9 +307,13 @@ def load(df_transactions: pd.DataFrame,
             processed target customers DataFrame.
         df_customers (pd.DataFrame): processed customers DataFrame.
         s3_csv_save_path (str): path where store the csv files.
-        s3_credentials (dict): aws s3 access credentials
-    """
+        s3_credentials (dict): aws s3 access credentials.
+        engine (Engine): engine used for database connection.
 
+    Returns:
+        Exception | None: exception captured if any,
+            or None if load process done successfully.
+    """
     try:
         if df_transactions.empty or df_products.empty or \
              df_target_customers.empty or df_customers.empty:
@@ -299,9 +369,11 @@ def load(df_transactions: pd.DataFrame,
             if_exists='append',
             index=False
         )
-    except ValueError:
-        print("empty dataframe")
+    except ValueError as exc:
+        logger.error(f"Cannot load empty dataframes. {exc}")
         return ValueError
+    else:
+        return None
 
 
 def run():
@@ -309,9 +381,12 @@ def run():
         Function that executes the entire ETL process.
     """
     # Try to run the ETL process, catching posible exceptions
+    logger.info(
+        "Starting ETL process."
+    )
     try:
         # Download dataset from aws s3 bucket
-        download_dataset_from_s3(
+        download_result = download_dataset_from_s3(
             S3_KEY,
             S3_SECRET,
             S3_BUCKET,
@@ -319,29 +394,67 @@ def run():
             DATASET_PATH,
             DATASET_DIR
         )
+        # If download failed,
+        # raise captured exception and break this try block
+        if download_result:
+            raise download_result
 
-        # Extract
+        # EXTRACT
+        extraction_results = extract(DATASET_PATH)
+        # If download fails,
+        # raise captured exception and break this try block
+        if type(extraction_results) != tuple:
+            raise extraction_results
         df_transactions, df_target_customers, \
-            df_demographic, df_address = extract(DATASET_PATH)
-        # Transform
-        df_end_transactions, df_end_products = \
-            transform_transactions(df_transactions)
-        df_end_target_customers = \
+            df_demographic, df_address = extraction_results
+
+        # TRANSFORM
+        # If any transformation fails,
+        # raise captured exception and break this try block
+
+        # Transactions dataset transformation
+        transactions_transf_results = transform_transactions(df_transactions)
+        if type(transactions_transf_results) != tuple:
+            raise transactions_transf_results
+        df_end_transactions, df_end_products = transactions_transf_results
+
+        # Target customers dataset transformation
+        target_cust_transf_results = \
             transform_target_customers(df_target_customers)
-        df_end_customers = transform_customers(df_address, df_demographic)
-        # Load
-        load(
+        if type(target_cust_transf_results) != pd.DataFrame:
+            raise target_cust_transf_results
+        df_end_target_customers = target_cust_transf_results
+
+        # Customers dataset transformation
+        customers_transf_results = \
+            transform_customers(df_address, df_demographic)
+        if type(customers_transf_results) != pd.DataFrame:
+            raise customers_transf_results
+        df_end_customers = customers_transf_results
+
+        # LOAD
+        # If load process fails,
+        # raise captured exception and break this try block
+        load_results = load(
             df_end_transactions,
             df_end_products,
             df_end_target_customers,
             df_end_customers,
             S3_FOLDER_SAVE_CSV_PATH,
             S3_CREDENTIALS,
-            engine
+            db_engine
         )
-    except Exception as e:
-        print(f'ETL process failed. Error: {e}')
-
+        if load_results is not None:
+            raise load_results
+    # If any exception ocurred, ETL process fails
+    except Exception as exec:
+        logger.error(
+            f"ETL process failed. {exec}"
+        )
+    else:
+        logger.info(
+            "ETL process finished sucessfully."
+        )
 
 if __name__ == '__main__':
     run()
