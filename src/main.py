@@ -9,8 +9,8 @@ import warnings
 import boto3
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from libs.config import settings
-from libs.db import engine as db_engine
-from libs.db import CommonActions
+from libs.db import default_engine as db_engine
+from libs.db import CommonActions as db_common_actions
 from sqlalchemy.engine import Engine
 
 
@@ -342,8 +342,17 @@ def load(
         )
 
         # Truncate tables before load
-        commonactions = CommonActions()
-        commonactions.truncate_tables()
+        truncate_result = db_common_actions.truncate_tables(
+            [
+                "transactions",
+                "products",
+                "current_customers",
+                "target_customers",
+            ]
+        )
+        # Return captured exception if any
+        if truncate_result:
+            raise truncate_result
 
         # Load processed dataframes into database tables
         df_products.to_sql(
@@ -372,7 +381,13 @@ def load(
     except ValueError as exc:
         logger.error(f"Cannot load empty dataframes. {exc}")
         return ValueError
+    except Exception as exc:
+        logger.error(f"An error ocurred while loading dataframes. {exc}")
+        return exc
     else:
+        logger.info(
+            "Dataframes loaded to database successfully."
+        )
         return None
 
 
@@ -455,6 +470,7 @@ def run():
         logger.info(
             "ETL process finished sucessfully."
         )
+
 
 if __name__ == '__main__':
     run()

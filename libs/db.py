@@ -17,10 +17,7 @@ from libs.config import settings
 
 # Sqlalchemy
 # engine is created to be called as modules from other scripts
-engine = create_engine(settings.DATABASE_URL)
-# session is created to be called as modules from other scripts
-Session = sessionmaker(bind=engine)
-session = Session()
+default_engine = create_engine(settings.DATABASE_URL)
 # base is created to be called as modules from other scripts
 Base = declarative_base()
 
@@ -39,23 +36,43 @@ class CommonActions:
     This class groups actions or tasks in common
     for the different scripts or classes.
     '''
-    def truncate_tables(self) -> None:
-        '''
-        This methods performs a truncate
-        to the tables
-        '''
-        tables = 'target_customers, transactions, current_customers,products'
-        try:
-            session.execute(f"TRUNCATE TABLE {tables}")
-            session.commit()
-            session.close()
-        except Exception as e:
-            logger.error(f'Truncate tables Failed, stoping script {e}')
-            raise ('Trancate Failed')
-        else:
-            logger.info('Truncated Tables successful')
+    def truncate_tables(
+        tables: list,
+        engine=default_engine
+    ) -> None | Exception:
+        """
+        This methods performs a truncate to the tables.
 
-    def execute_query(table: str, columns=None, filters=None) -> list | None:
+        Args:
+            engine (Engine, optional): Database connection engine.
+                Defaults to default_engine.
+
+        Returns:
+            None | Exception: captured exception if any,
+                or None otherwise.
+        """
+        # Iterate table names list and build the truncate query
+        query = "TRUNCATE TABLE "
+        for idx, table_name in enumerate(tables):
+            query += table_name
+            if idx < len(tables) - 1:
+                query += ", "
+        # Catch and return possible exceptions
+        try:
+            engine.execute(query)
+        except Exception as exc:
+            logger.error(f'Truncate tables failed. {exc}')
+            return exc
+        else:
+            logger.info(f"Truncated Tables successfully: '{query}'")
+            return None
+
+    def execute_query(
+        table: str,
+        columns=None,
+        filters=None,
+        engine=default_engine
+    ) -> list | Exception:
         """
         Builds a simple query with given parameters,
         executes it and return the results.
@@ -65,10 +82,12 @@ class CommonActions:
             columns (list): a list with column names. Defaults to None.
             filters (str, optional): filters to apply
                 (WHERE clause without the WHERE keyword). Defaults to None.
+            engine (Engine, optional): Database connection engine.
+                Defaults to default_engine.
 
         Returns:
-            list | None: a list of returned rows.
-                None if failed to execute query.
+            list | Exception: a list of returned rows,
+                or captured exception if any.
         """
         # Builds the query with given parameters
         # SELECT
@@ -89,15 +108,11 @@ class CommonActions:
 
         # Try to execute it, catching possible exceptions
         try:
-            result = session.execute(query)
-            session.commit()
-            session.close()
-        except Exception as e:
-            logger.error(f'Failed to execute query:{query}. Exception: {e}')
-            # print(f'Failed to execute query: {query}.\n{e}')
-            return None
+            result = engine.execute(query)
+        except Exception as exc:
+            logger.error(f'Failed to execute query:{query}. Exception: {exc}')
+            return exc
         else:
             # If executed successfully, return fetched rows
             logger.info(f'Query executed successfully: {query}')
-            # print(f'Query executed successfully: {query}')
             return result.fetchall()
