@@ -22,6 +22,32 @@
 2022-12-02 18:24:43,040 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
 2022-12-02 18:25:28,093 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
 2022-12-02 18:25:53,939 - simpleLogger - INFO - File successfuly created
+'2022-12-05T18:12' - api - INFO - Starting FastApi
+'2022-12-05T19:12' - api - INFO - Starting FastApi
+'2022-12-05T19:12' - api - INFO - Return path of file
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - ERROR - Starting FastApi in Error
+'2022-12-06T09:12' - api - INFO - Return path of file
+'2022-12-06T09:12' - api - CRITICAL - Desde Critical
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - INFO - Return path of file
+'2022-12-06T09:12' - api - CRITICAL - Desde Critical
+'2022-12-06T10:12' - api - INFO - Return path of file
+'2022-12-06T10:12' - api - CRITICAL - Desde Critical
+'2022-12-06T10:12' - api - INFO - Return path of file
+'2022-12-06T10:12' - api - CRITICAL - Desde Critical
+'2022-12-06T10:03' - api - INFO - Starting FastApi
+'2022-12-06T10:04' - api - INFO - Return path of file
+'2022-12-06T10:04' - api - CRITICAL - Desde Critical
+'2022-12-06T10:48' - db - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T10:49' - db - ERROR - Failed to execute query:SELECT *  FROM product;. Exception: (psycopg2.errors.UndefinedTable) relation "product" does not exist
+LINE 1: SELECT *  FROM product;
+                       ^
+
+[SQL: SELECT *  FROM product;]
+(Background on this error at: https://sqlalche.me/e/14/f405)
 2022-12-05 15:08:37,535 - simpleLogger - INFO - File successfuly created
 2022-12-05 15:11:07,689 - simpleLogger - INFO - File successfuly created
 2022-12-05 15:12:44,330 - simpleLogger - INFO - File successfuly created
@@ -125,3 +151,57 @@
 2022-12-06 10:41:27,340 - simpleLogger - INFO - File successfuly created
 2022-12-06 10:51:59,610 - simpleLogger - ERROR - Error - Files not found
 2022-12-06 10:51:59,626 - simpleLogger - INFO - File successfuly created
+'2022-12-06T11:46' - api - INFO - Starting FastApi
+'2022-12-06T12:18' - api - INFO - Starting FastApi
+'2022-12-06T12:19' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T12:49' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T14:09' - api - INFO - Starting FastApi
+'2022-12-06T14:10' - api - INFO - Starting FastApi
+'2022-12-06T14:10' - api - INFO - Starting FastApi
+'2022-12-06T14:15' - api - INFO - Starting FastApi
+'2022-12-06T15:06' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:06' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:06' - api - ERROR - Error - Files not found
+'2022-12-06T15:08' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:08' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:08' - api - ERROR - Error - Files not found
+'2022-12-06T15:15' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:15' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:15' - api - ERROR - Error - Files not found
+'2022-12-06T15:20' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:20' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:20' - api - ERROR - Error - Files not found
+'2022-12-06T15:23' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:23' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:23' - api - ERROR - Error - Files not found
+'2022-12-06T15:29' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:29' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:29' - api - ERROR - Error - Files not found
+'2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:30' - api - ERROR - Error - Files not found
+'2022-12-06T20:07' - DB - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T20:08' - DB - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T20:09' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Truncated Tables successful
+'2022-12-06T20:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:12' - API - ERROR - Failed - Files not found
+'2022-12-06T20:12' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:12' - API - ERROR - Failed -> File empty
+'2022-12-06T20:14' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:14' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:14' - API - ERROR - Failed - Files not found
+'2022-12-06T20:14' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:14' - API - INFO - File successfuly created
+'2022-12-06T20:14' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:14' - API - ERROR - Failed -> File empty
+'2022-12-06T20:16' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:16' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:16' - API - ERROR - Failed - Files not found
+'2022-12-06T20:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:16' - API - INFO - File successfuly created
+'2022-12-06T20:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:16' - API - ERROR - Failed -> File empty

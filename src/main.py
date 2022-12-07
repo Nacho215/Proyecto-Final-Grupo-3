@@ -1,17 +1,17 @@
 # Imports
-import pandas as pd
-import warnings
-import boto3
-import os
 import logging
 import logging.config
 import botocore
 import sys
-from sqlalchemy.engine import Engine
-sys.path.append('..')
+import os
+import pandas as pd
+import warnings
+import boto3
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from libs.config import settings
 from libs.db import engine as db_engine
 from libs.db import CommonActions
+from sqlalchemy.engine import Engine
 
 
 # Set future warnings off
@@ -455,7 +455,6 @@ def run():
         logger.info(
             "ETL process finished sucessfully."
         )
-
 
 if __name__ == '__main__':
     run()

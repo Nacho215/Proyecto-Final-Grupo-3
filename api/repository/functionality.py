@@ -9,11 +9,13 @@ import logging.config
 # Get root project root
 rootPath = Path(__file__).parent.parent.parent
 
-# Logs config imports and logger set
-logging.config.fileConfig(f"{rootPath}/config_logs.conf",
-                          disable_existing_loggers=False)
+# Path level level
+root = Path.cwd().parent
+root = f'{root}/config_logs.conf'
 
-logger = logging.getLogger('simpleLogger')
+# open file config
+logging.config.fileConfig(root)
+logger = logging.getLogger('API')
 
 
 def uploadFile(file: UploadFile) -> JSONResponse:
@@ -34,7 +36,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 content = file.file.read()
                 myFile.write(content)
 
-                # Select all content into file, then Verify if 
+                # Select all content into file, then Verify if
                 # don't have content into file
                 # and back cursor to the start
                 myFile.seek(0, os.SEEK_END)
@@ -44,6 +46,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 if isempty:
                     myFile.close()
                     rmtree(Path(__file__).parent.parent.parent / "datasets")
+                    logger.error('Failed -> File empty')
                     raise HTTPException(
                                 status_code=status.HTTP_404_NOT_FOUND,
                                 detail="File not found"
@@ -60,7 +63,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 content = file.file.read()
                 myFile.write(content)
 
-                # Select all content into file, then Verify if 
+                # Select all content into file, then Verify if
                 # don't have content into file
                 # and back cursor to the start
                 myFile.seek(0, os.SEEK_END)
@@ -71,11 +74,12 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                     # Close file to can remove datasets folder if file is empty
                     myFile.close()
                     rmtree(Path(__file__).parent.parent.parent / "datasets")
+                    logger.error('Failed -> File empty')
                     raise HTTPException(
                                 status_code=status.HTTP_404_NOT_FOUND,
                                 detail="File not found"
                             )
-                            
+
                 myFile.close()
                 logger.info('File successfuly created')
             return JSONResponse(content={
@@ -83,7 +87,7 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 'path': f'{rootPath}/datasets/{file.filename}'
             }, status_code=200)
 
-    except FileNotFoundError:        
+    except FileNotFoundError:
         logger.error(f'Error File not found {FileNotFoundError}')
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -106,10 +110,10 @@ def get_csv_url_files() -> dict:
     # stored in the output_dir variable
     for fichero in output_dir.iterdir():
         # Create dictionary with file name as key
-        dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'            
+        dfUrlDict[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'
 
     if len(dfUrlDict) == 0:
-        logger.error('Error - Files not found')
+        logger.error('Failed - Files not found')
         raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="File not found"

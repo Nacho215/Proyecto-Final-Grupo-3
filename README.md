@@ -49,7 +49,8 @@ pip install -r requirements.txt
 ```
 And run main script:
 ```
-python src/main.py
+cd src
+python main.py
 ```
 
 # 🚀 Team

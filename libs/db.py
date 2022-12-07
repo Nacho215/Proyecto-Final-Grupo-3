@@ -4,13 +4,15 @@ engine, the session variable to be able to perform operations on the tables,
 and the variable Base which is inherited to create in the model the classes
 that make references to the references to the different tables in the model.
 '''
-# import logging
-# import logging.config
-import sys
-sys.path.append('')
+import logging
+import logging.config
+from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from libs.config import settings
 
 # Sqlalchemy
@@ -23,11 +25,12 @@ session = Session()
 Base = declarative_base()
 
 # Logging
-# Opening configuration file
-# logging.config.fileConfig('./config_logs.conf')
-# # Create logger
-# logger = logging.getLogger('dbLogger')
-# logger.info('probando dbLogger')
+# Path level
+root = Path.cwd().parent
+root = f'{root}/config_logs.conf'
+# open file config
+logging.config.fileConfig(root)
+logger = logging.getLogger('DB')
 
 
 # Class to add functionality
@@ -46,12 +49,11 @@ class CommonActions:
             session.execute(f"TRUNCATE TABLE {tables}")
             session.commit()
             session.close()
-        except Exception:
-            # logger.error('Truncate Failed')
+        except Exception as e:
+            logger.error(f'Truncate tables Failed, stoping script {e}')
             raise ('Trancate Failed')
         else:
-            print('Truncated Tables')
-            # logger.info('Truncated Tables')
+            logger.info('Truncated Tables successful')
 
     def execute_query(table: str, columns=None, filters=None) -> list | None:
         """
@@ -79,7 +81,7 @@ class CommonActions:
         else:
             query += "* "
         # FROM
-        query += f" FROM {table}"
+        query += f"FROM {table}"
         # WHERE
         if filters:
             query += f" WHERE {filters}"
@@ -91,11 +93,11 @@ class CommonActions:
             session.commit()
             session.close()
         except Exception as e:
-            # logger.error('f'Failed to execute query: {query}. Exception: {e}')
-            print(f'Failed to execute query: {query}.\n{e}')
+            logger.error(f'Failed to execute query:{query}. Exception: {e}')
+            # print(f'Failed to execute query: {query}.\n{e}')
             return None
         else:
             # If executed successfully, return fetched rows
-            # logger.info(f'Query executed successfully: {query}')
-            print(f'Query executed successfully: {query}')
+            logger.info(f'Query executed successfully: {query}')
+            # print(f'Query executed successfully: {query}')
             return result.fetchall()
