@@ -22,3 +22,186 @@
 2022-12-02 18:24:43,040 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
 2022-12-02 18:25:28,093 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
 2022-12-02 18:25:53,939 - simpleLogger - INFO - File successfuly created
+'2022-12-05T18:12' - api - INFO - Starting FastApi
+'2022-12-05T19:12' - api - INFO - Starting FastApi
+'2022-12-05T19:12' - api - INFO - Return path of file
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - ERROR - Starting FastApi in Error
+'2022-12-06T09:12' - api - INFO - Return path of file
+'2022-12-06T09:12' - api - CRITICAL - Desde Critical
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - INFO - Starting FastApi
+'2022-12-06T09:12' - api - INFO - Return path of file
+'2022-12-06T09:12' - api - CRITICAL - Desde Critical
+'2022-12-06T10:12' - api - INFO - Return path of file
+'2022-12-06T10:12' - api - CRITICAL - Desde Critical
+'2022-12-06T10:12' - api - INFO - Return path of file
+'2022-12-06T10:12' - api - CRITICAL - Desde Critical
+'2022-12-06T10:03' - api - INFO - Starting FastApi
+'2022-12-06T10:04' - api - INFO - Return path of file
+'2022-12-06T10:04' - api - CRITICAL - Desde Critical
+'2022-12-06T10:48' - db - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T10:49' - db - ERROR - Failed to execute query:SELECT *  FROM product;. Exception: (psycopg2.errors.UndefinedTable) relation "product" does not exist
+LINE 1: SELECT *  FROM product;
+                       ^
+
+[SQL: SELECT *  FROM product;]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-12-05 15:08:37,535 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:11:07,689 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:12:44,330 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:18:07,016 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:20:46,007 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:21:57,158 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:46:52,804 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:48:23,144 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:49:47,752 - simpleLogger - INFO - File successfuly created
+2022-12-05 15:56:44,999 - simpleLogger - INFO - File successfuly created
+2022-12-05 16:06:24,759 - simpleLogger - INFO - File successfuly created
+2022-12-05 16:08:02,527 - simpleLogger - INFO - File successfuly created
+2022-12-05 16:09:09,566 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:07:50,000 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:08:29,025 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:09:49,122 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:11:54,226 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:22:20,909 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:23:27,622 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:24:11,739 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:24:48,849 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:55:13,675 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:56:12,706 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:56:40,376 - simpleLogger - INFO - File successfuly created
+2022-12-05 17:57:25,425 - simpleLogger - INFO - File successfuly created
+2022-12-06 06:55:15,657 - simpleLogger - INFO - File successfuly created
+2022-12-06 06:56:42,514 - simpleLogger - INFO - File successfuly created
+2022-12-06 06:57:48,524 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:02:46,041 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:03:00,950 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:05:04,386 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:05:52,593 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:08:05,109 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:11:03,561 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:12:10,004 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:13:17,956 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:19:13,111 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:20:35,646 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:22:37,533 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:25:07,336 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:26:40,835 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:27:04,350 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:27:39,768 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:31:30,407 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:33:07,118 - simpleLogger - INFO - File successfuly created
+2022-12-06 07:43:59,217 - simpleLogger - INFO - File successfuly created
+2022-12-06 08:05:59,915 - simpleLogger - INFO - File successfuly created
+2022-12-06 08:52:59,488 - simpleLogger - ERROR - Error - Files not found
+2022-12-06 08:57:49,313 - simpleLogger - INFO - File successfuly created
+2022-12-06 09:08:38,811 - simpleLogger - INFO - File successfuly created
+2022-12-06 09:09:57,044 - simpleLogger - INFO - File successfuly created
+2022-12-06 09:13:30,469 - simpleLogger - INFO - info True
+2022-12-06 09:14:00,915 - simpleLogger - INFO - info True
+2022-12-06 09:14:31,969 - simpleLogger - INFO - info False
+2022-12-06 09:14:31,969 - simpleLogger - INFO - File successfuly created
+2022-12-06 09:15:16,107 - simpleLogger - INFO - info True
+2022-12-06 09:16:39,247 - simpleLogger - INFO - info True
+2022-12-06 09:16:39,248 - simpleLogger - ERROR - Error File not found, directory had been created: <class 'FileNotFoundError'>
+2022-12-06 09:43:44,018 - simpleLogger - INFO - info True
+2022-12-06 09:43:44,020 - simpleLogger - INFO - info ..\..\datasets
+2022-12-06 09:43:44,021 - simpleLogger - ERROR - Error File not found <class 'FileNotFoundError'>
+2022-12-06 09:44:56,359 - simpleLogger - INFO - info True
+2022-12-06 09:44:56,361 - simpleLogger - INFO - info C:\Users\ale\desktop\Proyecto-Final-Grupo-3\api\datasets
+2022-12-06 09:44:56,361 - simpleLogger - ERROR - Error File not found <class 'FileNotFoundError'>
+2022-12-06 09:44:58,060 - simpleLogger - INFO - info True
+2022-12-06 09:44:58,061 - simpleLogger - INFO - info C:\Users\ale\desktop\Proyecto-Final-Grupo-3\api\datasets
+2022-12-06 09:44:58,063 - simpleLogger - ERROR - Error File not found <class 'FileNotFoundError'>
+2022-12-06 09:45:25,984 - simpleLogger - INFO - info True
+2022-12-06 09:46:10,373 - simpleLogger - INFO - info True
+2022-12-06 09:46:10,374 - simpleLogger - INFO - info C:\Users\ale\desktop\Proyecto-Final-Grupo-3\datasets
+2022-12-06 09:46:10,375 - simpleLogger - ERROR - Error File not found <class 'FileNotFoundError'>
+2022-12-06 09:46:39,526 - simpleLogger - INFO - info True
+2022-12-06 09:46:39,527 - simpleLogger - INFO - info C:\Users\ale\desktop\Proyecto-Final-Grupo-3\datasets
+2022-12-06 09:46:53,151 - simpleLogger - INFO - info True
+2022-12-06 09:46:53,151 - simpleLogger - INFO - info C:\Users\ale\desktop\Proyecto-Final-Grupo-3\datasets
+2022-12-06 09:47:43,109 - simpleLogger - INFO - info True
+2022-12-06 09:47:43,110 - simpleLogger - INFO - info C:\Users\ale\desktop\Proyecto-Final-Grupo-3\datasets
+2022-12-06 10:03:33,642 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:09:42,827 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:12:09,030 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:23:29,382 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:24:29,281 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:25:17,718 - simpleLogger - ERROR - Error - Files not found
+2022-12-06 10:25:17,753 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:26:29,355 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:28:18,815 - simpleLogger - ERROR - Error - Files not found
+2022-12-06 10:28:18,845 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:29:28,906 - simpleLogger - ERROR - Error - Files not found
+2022-12-06 10:29:28,966 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:29:42,900 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:30:51,146 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:31:49,565 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:32:10,946 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:34:40,371 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:35:10,803 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:36:12,405 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:36:45,192 - simpleLogger - ERROR - Error - Files not found
+2022-12-06 10:36:45,213 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:40:05,503 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:41:27,315 - simpleLogger - ERROR - Error - Files not found
+2022-12-06 10:41:27,340 - simpleLogger - INFO - File successfuly created
+2022-12-06 10:51:59,610 - simpleLogger - ERROR - Error - Files not found
+2022-12-06 10:51:59,626 - simpleLogger - INFO - File successfuly created
+'2022-12-06T11:46' - api - INFO - Starting FastApi
+'2022-12-06T12:18' - api - INFO - Starting FastApi
+'2022-12-06T12:19' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T12:49' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T14:09' - api - INFO - Starting FastApi
+'2022-12-06T14:10' - api - INFO - Starting FastApi
+'2022-12-06T14:10' - api - INFO - Starting FastApi
+'2022-12-06T14:15' - api - INFO - Starting FastApi
+'2022-12-06T15:06' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:06' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:06' - api - ERROR - Error - Files not found
+'2022-12-06T15:08' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:08' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:08' - api - ERROR - Error - Files not found
+'2022-12-06T15:15' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:15' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:15' - api - ERROR - Error - Files not found
+'2022-12-06T15:20' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:20' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:20' - api - ERROR - Error - Files not found
+'2022-12-06T15:23' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:23' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:23' - api - ERROR - Error - Files not found
+'2022-12-06T15:29' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:29' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:29' - api - ERROR - Error - Files not found
+'2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:30' - api - INFO - Funtion GetData -> Return path of file
+'2022-12-06T15:30' - api - ERROR - Error - Files not found
+'2022-12-06T20:07' - DB - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T20:08' - DB - INFO - Query executed successfully: SELECT *  FROM products;
+'2022-12-06T20:09' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Query executed successfully: SELECT * FROM products;
+'2022-12-06T20:10' - DB - INFO - Truncated Tables successful
+'2022-12-06T20:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:12' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:12' - API - ERROR - Failed - Files not found
+'2022-12-06T20:12' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:12' - API - ERROR - Failed -> File empty
+'2022-12-06T20:14' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:14' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:14' - API - ERROR - Failed - Files not found
+'2022-12-06T20:14' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:14' - API - INFO - File successfuly created
+'2022-12-06T20:14' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:14' - API - ERROR - Failed -> File empty
+'2022-12-06T20:16' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:16' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-06T20:16' - API - ERROR - Failed - Files not found
+'2022-12-06T20:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:16' - API - INFO - File successfuly created
+'2022-12-06T20:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-06T20:16' - API - ERROR - Failed -> File empty
