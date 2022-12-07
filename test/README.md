@@ -3,20 +3,24 @@
 
 ### ✍ Brief explanation of the module
 ----
->Modulo en el cual se realizan los test de la aplicacion tendremos 3 secciones de test 2 corresponden a test unitarios y una a test de integracion.
+>Module in which the application tests are performed, we will have 3 test sections, 2 correspond to unit tests and one to integration tests.
 
 #### 🗃 Components of module
 ----
->📄  
+>🗃 htmlcov: folder with the index.html file containing the percentage of coverage of the folder's codes
 
->✅ test_api.py: aca se realizan los test unitarios de el modulo de api, en especifico se realizan test de los dos endpoint tanto el de lectura de archivos como el de upload, con pruebas tanto con archivos vacios como con archivos con contenido en su interior.
+>🗃 test_doc: folder containing all the txt files with the log of the execution of each test module.
 
->✅ test_integration.py: en este modlo
+>✅ test_api.py: here the unit tests of the api module are performed, specifically tests of the two endpoints are performed, both the file reading and upload, with tests with empty files as well as with files with content inside.
+
+>✅ test_integration.py: in this one we test the load function of the etl that what it does is to load the csv to s3 and the database to rds, this function makes integration tests since load integrates executions of practically all the etl so the percentage of coverage is of 100% in this.
+
+> ✅ test_unitest_etl.py: module that tests etl functions in a unitary way.
 
 ## 👣 Installation
 ----
 
->For the execution and implementation of this module you must first run the virtual environment of the module and then install the project dependencies which are found in the requirements.txt file.
+>To run the tests of this module we first activate the virtual environment and install the requirements.txt dependencies.
 
 ##### Create Virual env with venv name
 
@@ -36,49 +40,15 @@ venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
->After the previous step we must position ourselves inside the module's folder and then run the following script
+>After this, what we must do is to execute the tests, which we can do individually or globally all at once. Always located on the folder test we execute the commands
+
+##### We run all tests in the folder together
 
 ```bash
-python apiMain.py
+pytest -v .
 ```
+##### We run each test separately
 
-As an extra we leave the endpoints and an example script to obtain the paths of the csv to read them.
-
-## API Reference
-
-#### Swagger docs
-
-```http
-  /docs
+```bash
+pytest -v ./test_archivo.py
 ```
-
-#### Get all csv processed items
-
-```http
-  GET /dataset/get_data
-```
-
-#### Uploar xlxs file
-
-```http
-  POST /dataset/update
-```
-
-|   Parameter  |   Type   | Description                    |
-| :--------    | :------- | :----------------------------- |
-| `file_objet` |  `file`  | **Required**. Upload xsxl file |
-
-
-##### 📦 Usage/Examples
------
->Obtain the url and with these your dataframes
-
-~~~
-dats = requests.get('localhost:8000/dataset/get_data')
-    # Convert json object into python dict
-    dats = dats.json()
-    for i in dats:
-        # Obtain eachone of paths into dictionary that 
-        # will be used to read into read_csv function
-        print(pd.read_csv(dats[i]))
-~~~

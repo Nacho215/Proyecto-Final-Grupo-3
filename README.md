@@ -54,6 +54,22 @@ cd src
 python main.py
 ```
 
+## Indice
+----
+> Mediante este idice podras ir directamente al modulo que desee para ver su funcionamiento y ejecutarlo por separado mediante sus intrucciones
+
+1 - [FastAPI](https://github.com/Nacho215/Proyecto-Final-Grupo-3/tree/main/api)
+
+2 - [Streamlit - Fron End](https://github.com/Nacho215/Proyecto-Final-Grupo-3/tree/main/front)
+
+3 - [Database connections and management - Configurations - Templates - Models](https://github.com/Nacho215/Proyecto-Final-Grupo-3/tree/main/libs)
+
+4 - [EDA - Insight Queries](https://github.com/Nacho215/Proyecto-Final-Grupo-3/tree/main/notebooks)
+
+5 - [Main Project execution](https://github.com/Nacho215/Proyecto-Final-Grupo-3/tree/main/src)
+
+6 - [Tests](https://github.com/Nacho215/Proyecto-Final-Grupo-3/tree/main/test)
+
 # 🚀 Team
 - Chen, Isaac
 - Gomez, Alejandro

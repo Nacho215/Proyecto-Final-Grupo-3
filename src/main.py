@@ -295,7 +295,8 @@ def load(
     df_customers: pd.DataFrame,
     s3_csv_save_path: str,
     s3_credentials: dict,
-    engine: Engine
+    engine: Engine,
+    testing=False
 ) -> Exception | None:
     """
     Function that loads data to the database and also saves it to csv files.
@@ -341,18 +342,20 @@ def load(
             storage_options=s3_credentials
         )
 
-        # Truncate tables before load
-        truncate_result = db_common_actions.truncate_tables(
-            [
-                "transactions",
-                "products",
-                "current_customers",
-                "target_customers",
-            ]
-        )
-        # Return captured exception if any
-        if truncate_result:
-            raise truncate_result
+        if not testing:
+            # Truncate tables before load
+            truncate_result = db_common_actions.truncate_tables(
+                [
+                    "transactions",
+                    "products",
+                    "current_customers",
+                    "target_customers",
+                ],
+                engine
+            )
+            # Return captured exception if any
+            if truncate_result:
+                raise truncate_result
 
         # Load processed dataframes into database tables
         df_products.to_sql(
