@@ -52,33 +52,64 @@ As an extra we leave the endpoints and an example script to obtain the paths of 
   /docs
 ```
 
-#### Get all csv processed items
+#### Get all csv processed items into s3 service
 
 ```http
   GET /dataset/get_data
 ```
+~~~Output Format
+{
+  "customers.csv": "outputs/customers.csv",
+  "products.csv": "outputs/products.csv",
+  "target_customers.csv": "outputs/target_customers.csv",
+  "transactions.csv": "outputs/transactions.csv"
+}
+~~~
 
-#### Uploar xlxs file
+#### Uploar xlxs file to local path
 
 ```http
-  POST /dataset/update
+  POST /dataset/upload
 ```
 
 |   Parameter  |   Type   | Description                    |
 | :--------    | :------- | :----------------------------- |
 | `file_objet` |  `file`  | **Required**. Upload xsxl file |
 
-
-##### 📦 Usage/Examples
------
->Obtain the url and with these your dataframes
-
+~~~Return json
+{
+  "saved": true,
+  "local_path": "C:\\Users\\ale\\desktop\\Proyecto-Final-Grupo-3/datasets/KPMG_VI_New_raw_data_update_final.xlsx"
+}
 ~~~
-dats = requests.get('localhost:8000/dataset/get_data')
-    # Convert json object into python dict
-    dats = dats.json()
-    for i in dats:
-        # Obtain eachone of paths into dictionary that 
-        # will be used to read into read_csv function
-        print(pd.read_csv(dats[i]))
+
+#### Uploar xlxs file to local path
+
+```http
+  POST /dataset/upload_s3
+```
+
+|   Parameter  |   Type   | Description                    |
+| :--------    | :------- | :----------------------------- |
+| `file_objet` |  `file`  | **Required**. Upload xsxl file |
+
+~~~Return json
+{
+  "saved": true,
+  "s3_path": "datasets/KPMG_VI_New_raw_data_update_final.xlsx"
+}
+~~~
+
+#### Get all csv processed items into local path
+
+```http
+  GET /dataset/local_path
+```
+~~~Output Format
+{
+  "customers": "C:\\Users\\ale\\desktop\\Proyecto-Final-Grupo-3/outputs/customers.csv",
+  "products": "C:\\Users\\ale\\desktop\\Proyecto-Final-Grupo-3/outputs/products.csv",
+  "target_customers": "C:\\Users\\ale\\desktop\\Proyecto-Final-Grupo-3/outputs/target_customers.csv",
+  "transactions": "C:\\Users\\ale\\desktop\\Proyecto-Final-Grupo-3/outputs/transactions.csv"
+}
 ~~~

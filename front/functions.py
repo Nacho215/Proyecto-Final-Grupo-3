@@ -95,10 +95,16 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-
+# Aply singleton to set it in cache memory, in that way in futures requests will 
+# not be neccesary download again the files
 @st.experimental_singleton
 def s3_csv_downloader():
+    """Function that download files of s3 service only if didn't be downloaded
 
+    Returns:
+        bool: return True if in the path had been downloaded 
+        csv in the other hand return False
+    """
     S3_KEY = settings.S3_KEY
     S3_SECRET = settings.S3_SECRET
     S3_BUCKET = settings.S3_BUCKET
@@ -116,10 +122,11 @@ def s3_csv_downloader():
     dats = requests.get('http://127.0.0.1:8000/dataset/get_data')
     # Convert json object into python dict
     dats = dats.json()
-
+    
     if not dataset_local_path.exists():
         os.mkdir(dataset_local_path)
 
+    # Go throw paths of s3 and download all csv files
     for i in dats:
         dataset_s3_path = f'{dats[i]}'
         try:

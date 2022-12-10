@@ -16,16 +16,12 @@ st.set_page_config(
 body = st.container()
 
 with body:
+    st.image("https://i.pinimg.com/550x/2b/1c/5f/2b1c5f11939d2faca9c0b2536f7e7c9e.jpg",width=200,use_column_width=False)
     # Welcome message and descriptions
     st.markdown(
         """
             # Welcome to bike 🚲 forever ♾, where all your biking needs will
             # be satisfied. 🙌
-            
-            <p align="center">
-                <img src="https://i.pinimg.com/550x/2b/1c/5f/2b1c5f11939d2faca9c0b2536f7e7c9e.jpg" alt="ForeverBicycles" width="300">
-            </p>
-            
 
             In this webpage you will be able to:
             * 👉 upload our dataset

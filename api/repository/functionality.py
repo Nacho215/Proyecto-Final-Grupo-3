@@ -98,13 +98,13 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                 if isempty:
                     myFile.close()
                     rmtree(Path(__file__).parent.parent.parent / "datasets")
-                    # logger.error('Failed -> File empty')
+                    logger.error('Failed -> File empty')
                     raise HTTPException(
                                 status_code=status.HTTP_404_NOT_FOUND,
                                 detail="File empty"
                             )
                 myFile.close()
-                # logger.info('File successfuly created')            
+                logger.info('File successfuly created')            
             return JSONResponse(content={
                 'saved': True,
                 'local_path': f'{rootPath}/datasets/{file.filename}',
@@ -126,20 +126,20 @@ def uploadFile(file: UploadFile) -> JSONResponse:
                     # Close file to can remove datasets folder if file is empty
                     myFile.close()
                     rmtree(Path(__file__).parent.parent.parent / "datasets")
-                    # logger.error('Failed -> File empty')
+                    logger.error('Failed -> File empty')
                     raise HTTPException(
                                 status_code=status.HTTP_404_NOT_FOUND,
                                 detail="File empty"
                             )
 
                 myFile.close()
-                # logger.info('File successfuly created')
+                logger.info('File successfuly created')
             return JSONResponse(content={
                 'saved': True,
                 'local_path': f'{rootPath}/datasets/{file.filename}',
             }, status_code=200)
     except FileNotFoundError:
-        # logger.error(f'Error File not found {FileNotFoundError}')
+        logger.error(f'Error File not found {FileNotFoundError}')
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="File not found"
@@ -167,15 +167,17 @@ def get_csv_url_files() -> dict:
         if index > 0:
             # Create dictionary with file name as key
             dfUrlDict[objeto['Key'].split('/')[-1]] = objeto['Key']
+            logger.info("s3 data was successfuly obtained")
 
     if len(dfUrlDict) == 0:
-        # logger.error('Failed - Files not found')
+        logger.error('Failed - Files not found')
         raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="File not found"
                 )
 
     return dfUrlDict
+
 
 def local_data() -> dict:
     """Function that obtains the paths of the processed csv files.
@@ -192,7 +194,7 @@ def local_data() -> dict:
     for fichero in output_dir.iterdir():
         # Create dictionary with file name as key
         dictData[fichero.name.split('.')[0]] = f'{rootPath}/outputs/{fichero.name}'
-
+        logger.info("local data was get successfuly")
     if len(dictData) == 0:
         logger.error('Failed - Files not found')
         raise HTTPException(

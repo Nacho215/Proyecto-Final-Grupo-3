@@ -1,10 +1,10 @@
-'''To create filters to process datasets
+'''This module Upload file to s3 if yo confirme that
 
 Receives:
 raw excel dataset
 
 Returns:
-cleaned and processed tables
+response message
 '''
 
 # Imports
@@ -20,7 +20,7 @@ st.set_page_config(
     layout="wide",
 )
 
-#set up containers to work in 
+# set up containers to work in 
 header = st.container()
 
 # title
@@ -37,16 +37,7 @@ uploaded_xlxs_file = st.file_uploader(
 # Make request only if file had been upload
 if uploaded_xlxs_file:
 
-    # open and extract xlxs cheetsheet
-    xlsFile = openpyxl.load_workbook(uploaded_xlxs_file)
-    sheetnames = xlsFile.sheetnames
-
-    st.text("Look into upload file")
-    file_container = st.expander("Check your uploaded files")
-    # Import datasets from all excel sheets
-    for name in sheetnames:
-        file_container.write(pd.read_excel(uploaded_xlxs_file, sheet_name=name, skiprows=[0]))
-
+    # Button that make the action of upload a file to s3
     upload = st.button("Upload to s3")
 
     if upload:
@@ -60,7 +51,18 @@ if uploaded_xlxs_file:
         # transform json object into dictionary
         response = response.json()
 
+        # Show message depend if file was upload or not
         if response['saved'] is True:
             st.write('Uploaded to s3')
         else:
             st.write('Can´t upload')
+
+    # open and extract xlxs cheetsheet
+    xlsFile = openpyxl.load_workbook(uploaded_xlxs_file)
+    sheetnames = xlsFile.sheetnames
+
+    st.text("Look into upload file")
+    file_container = st.expander("Check your uploaded files")
+    # Import datasets from all excel sheets
+    for name in sheetnames:
+        file_container.write(pd.read_excel(uploaded_xlxs_file, sheet_name=name, skiprows=[0]))

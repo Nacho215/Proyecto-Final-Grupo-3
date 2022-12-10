@@ -34,6 +34,7 @@ bar = st.container()
 
 path_csv = Path(__file__).parent.parent.parent/'outputs'
 
+# Only execute logic if the path exists
 if path_csv.exists():
     file_names = []
     list_csv = []
@@ -77,6 +78,7 @@ if path_csv.exists():
         fig = px.bar(chart_data_products, y=["brand","product_line"], color="product_line", barmode="group")
         st.plotly_chart(fig, use_container_width=True)
 else:
+    # If outputs folder with csv files don´t exists so you can download them with a button
     st.write("Folder outputs with datasets not exists please shoot the button, wait a minute and reload the page")
     button = st.button("Create Output folder with csv files")
     if button:

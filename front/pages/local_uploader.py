@@ -67,6 +67,8 @@ if uploaded_xlxs_file:
 with st.sidebar:
     name_option = st.selectbox('Select Table that you would like to see', sheetnames)
 
+# If selection is equal to actual name into seethsnames so 
+# aply filter to this table to show it
 if name_option in sheetnames:
     df_filtered = filter_dataframe(pd.read_excel(uploaded_xlxs_file, sheet_name=name_option,skiprows=[0]))
     st.dataframe(df_filtered)

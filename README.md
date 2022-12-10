@@ -56,7 +56,7 @@ python main.py
 
 ## 📄 Index
 ----
-> Mediante este idice podras ir directamente al modulo que desee para ver su funcionamiento y ejecutarlo por separado mediante sus intrucciones
+> Through this idice you can go directly to the module you want to see how it works and execute it separately through its instructions.
 
 1 - [FastAPI](https://github.com/Nacho215/Proyecto-Final-Grupo-3/tree/main/api)
 
