@@ -499,3 +499,18 @@ LINE 1: SELECT *  FROM product;
 '2022-12-07T14:47' - ETL - INFO - 'Target Customers' dataset transformed successfully.
 '2022-12-07T14:47' - ETL - INFO - 'Customers' dataset transformed successfully.
 '2022-12-07T14:47' - ETL - ERROR - Cannot load empty dataframes. 
+'2022-12-10T19:00' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:00' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:00' - ETL - ERROR - An error ocurred trying to extract data from the dataset. [Errno 22] Invalid argument
+'2022-12-10T19:00' - ETL - ERROR - ETL process failed. [Errno 22] Invalid argument
+'2022-12-10T19:04' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:04' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:04' - ETL - ERROR - An error ocurred trying to extract data from the dataset. [Errno 22] Invalid argument
+'2022-12-10T19:04' - ETL - ERROR - ETL process failed. [Errno 22] Invalid argument
+'2022-12-10T19:22' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-10T19:26' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-10T19:26' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-10T19:27' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:28' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:28' - ETL - ERROR - An error ocurred trying to extract data from the dataset. [Errno 22] Invalid argument
+'2022-12-10T19:28' - ETL - ERROR - ETL process failed. [Errno 22] Invalid argument

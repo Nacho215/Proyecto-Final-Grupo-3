@@ -15,7 +15,15 @@ from pandas.api.types import (
 )
 import pandas as pd
 import streamlit as st
-
+from pathlib import Path
+import requests
+import boto3
+import pandas as pd
+import streamlit as st
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+from libs.config import settings
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -86,3 +94,44 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
                     df = df[df[column].astype(str).str.contains(user_text_input)]
 
     return df
+
+
+@st.experimental_singleton
+def s3_csv_downloader():
+
+    S3_KEY = settings.S3_KEY
+    S3_SECRET = settings.S3_SECRET
+    S3_BUCKET = settings.S3_BUCKET
+
+    dataset_local_path = Path(__file__).parent.parent/'outputs'
+
+    client = boto3.client('s3')
+
+    client = boto3.client(
+        's3',
+        aws_access_key_id=S3_KEY,
+        aws_secret_access_key=S3_SECRET
+    )
+
+    dats = requests.get('http://127.0.0.1:8000/dataset/get_data')
+    # Convert json object into python dict
+    dats = dats.json()
+
+    if not dataset_local_path.exists():
+        os.mkdir(dataset_local_path)
+
+    for i in dats:
+        dataset_s3_path = f'{dats[i]}'
+        try:
+            client.download_file(S3_BUCKET, dataset_s3_path, f"{dataset_local_path}/{i.split('/')[-1]}")            
+        except Exception as ex:
+            print(f"error - {ex}")
+
+    count = 0
+    for i in dataset_local_path.iterdir():
+        count += 1
+
+    if 0 < count <= 4:
+        return True
+    else:
+        return False

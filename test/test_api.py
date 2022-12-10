@@ -45,7 +45,7 @@ def test_read_files():
             file.write("Primera línea")
             file.close()
 
-    response = client.get('/dataset/get_data')
+    response = client.get('/dataset/local_path')
 
     assert response.status_code == 200, logger.warning(
         'Test Status_code -> Failed')
@@ -63,7 +63,7 @@ def test_read_files_not_found():
     for file in path.iterdir():
         os.remove(file)
 
-    response = client.get('/dataset/get_data')
+    response = client.get('/dataset/local_path')
 
     rmtree(path)
 
@@ -149,7 +149,7 @@ def test_upload_empty_file():
         # and json include string 'File not found' into path key detail
         assert response.status_code == 404, logger.warning(
             'Test status code ->  Failed')
-        assert response.json()['detail'] == 'File not found', logger.warning(
+        assert response.json()['detail'] == 'File empty', logger.warning(
             'Test file not found ->  Failed')
 
         logger.info('Test upload empty file -> Successfully Completed')

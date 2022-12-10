@@ -31,9 +31,22 @@ def upload_file(file: UploadFile = File(...)) -> UploadFile:
         UploadFile: json file with information if the file
         was loaded or not in the system and path where was upload.
     """
-    logger.info('Function Upload -> Return file Uploaded')
+    # logger.info('Function Upload -> Return file Uploaded')
     return functionality.uploadFile(file)
 
+
+@router.post('/upload_s3')
+def upload_file_s3(file: UploadFile = File(...)) -> UploadFile:
+    """Endpoint that upload file to s3 service
+
+    Args:
+        file (UploadFile, optional): file that will be uploaded to s3 service. 
+        Defaults to File(...).
+
+    Returns:
+        UploadFile: call to uploadFile_s3 function wich recieve the file to upload
+    """
+    return functionality.uploadFile_s3(file)
 
 @router.get('/get_data')
 def getData() -> dict:
@@ -44,5 +57,16 @@ def getData() -> dict:
         dict: dictionary with each of the paths found in the
         outputs folder with csvs
     """
-    logger.info('Funtion GetData -> Return path of file')
+    # logger.info('Funtion GetData -> Return path of file')
     return functionality.get_csv_url_files()
+
+@router.get('/local_path')
+def local_data() -> dict:
+    """Endpoint that returns the paths of the
+    processed csv files
+    Returns:
+        dict: dictionary with each of the paths found in the
+        outputs folder with csvs
+    """
+    logger.info('Funtion GetData -> Return path of file')
+    return functionality.local_data()
