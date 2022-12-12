@@ -536,3 +536,12 @@ LINE 1: SELECT *  FROM product;
 '2022-12-10T19:45' - ETL - INFO - ETL process finished sucessfully.
 '2022-12-10T20:24' - API - INFO - Funtion GetData -> Return path of file
 '2022-12-10T20:25' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T08:24' - API - INFO - Starting FastApi!
+'2022-12-12T09:01' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T09:02' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T09:03' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-12T09:05' - API - INFO - Function Upload to s3 -> Return file Uploaded
+'2022-12-12T09:07' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-12T09:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T09:18' - API - INFO - Function Upload to s3 -> Return file Uploaded
+'2022-12-12T09:19' - API - INFO - Funtion GetData -> Return path of file
