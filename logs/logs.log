@@ -499,3 +499,49 @@ LINE 1: SELECT *  FROM product;
 '2022-12-07T14:47' - ETL - INFO - 'Target Customers' dataset transformed successfully.
 '2022-12-07T14:47' - ETL - INFO - 'Customers' dataset transformed successfully.
 '2022-12-07T14:47' - ETL - ERROR - Cannot load empty dataframes. 
+'2022-12-10T19:31' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:32' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:32' - ETL - ERROR - An error ocurred trying to extract data from the dataset. [Errno 22] Invalid argument
+'2022-12-10T19:32' - ETL - ERROR - ETL process failed. [Errno 22] Invalid argument
+'2022-12-10T19:36' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:36' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:36' - ETL - ERROR - An error ocurred trying to extract data from the dataset. [Errno 22] Invalid argument
+'2022-12-10T19:36' - ETL - ERROR - ETL process failed. [Errno 22] Invalid argument
+'2022-12-10T19:37' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:37' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:37' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-10T19:37' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-10T19:37' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-10T19:37' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-10T19:38' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-10T19:38' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-10T19:38' - ETL - INFO - ETL process finished sucessfully.
+'2022-12-10T19:42' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:42' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:43' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-10T19:43' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-10T19:43' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-10T19:43' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-10T19:43' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-10T19:43' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-10T19:43' - ETL - INFO - ETL process finished sucessfully.
+'2022-12-10T19:44' - ETL - INFO - Starting ETL process.
+'2022-12-10T19:45' - ETL - INFO - Dataset downloaded successfully at: '../datasets\KPMG_VI_New_raw_data_update_final.xlsx'
+'2022-12-10T19:45' - ETL - INFO - Data extracted from dataset successfully.
+'2022-12-10T19:45' - ETL - INFO - 'Transactions' dataset transformed successfully.
+'2022-12-10T19:45' - ETL - INFO - 'Target Customers' dataset transformed successfully.
+'2022-12-10T19:45' - ETL - INFO - 'Customers' dataset transformed successfully.
+'2022-12-10T19:45' - DB - INFO - Truncated Tables successfully: 'TRUNCATE TABLE transactions, products, current_customers, target_customers'
+'2022-12-10T19:45' - ETL - INFO - Dataframes loaded to database successfully.
+'2022-12-10T19:45' - ETL - INFO - ETL process finished sucessfully.
+'2022-12-10T20:24' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-10T20:25' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T08:24' - API - INFO - Starting FastApi!
+'2022-12-12T09:01' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T09:02' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T09:03' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-12T09:05' - API - INFO - Function Upload to s3 -> Return file Uploaded
+'2022-12-12T09:07' - API - INFO - Funtion GetData -> Return path of file
+'2022-12-12T09:16' - API - INFO - Function Upload -> Return file Uploaded
+'2022-12-12T09:18' - API - INFO - Function Upload to s3 -> Return file Uploaded
+'2022-12-12T09:19' - API - INFO - Funtion GetData -> Return path of file
