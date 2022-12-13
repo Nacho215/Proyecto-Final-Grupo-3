@@ -1,0 +1,21 @@
+version: '1.0'
+
+services:
+  bikesforever:
+    image: ricardolujan/bikesforever 
+    environment:
+      S3_KEY : 
+      S3_SECRET : 
+      S3_BUCKET : 
+      S3_FOLDER_SAVE_CSV : 
+      S3_DATASET_NAME :
+      S3_DATASET_FOLDER : 
+      POSTGRES_USER : 
+      POSTGRES_DB : 
+      POSTGRES_PASSWORD : 
+      POSTGRES_SERVER : 
+      POSTGRES_PORT : 
+      DATASET_DIR : 
+    ports:
+      - '8501:8501'
+    tty: true 
